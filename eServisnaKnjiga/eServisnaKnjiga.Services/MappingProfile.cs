@@ -10,7 +10,10 @@ namespace eServisnaKnjiga.Services
     public class MappingProfile : Profile
     {
         public MappingProfile() {
+
             CreateMap<Database.Paketi, Model.Paketi>();
+            CreateMap<Model.Requests.PaketiInsertRequest, Database.Paketi>();
+
         }
     }
 }

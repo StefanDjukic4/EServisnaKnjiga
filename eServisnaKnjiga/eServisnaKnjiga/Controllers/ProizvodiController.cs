@@ -1,4 +1,5 @@
 using eServisnaKnjiga.Model;
+using eServisnaKnjiga.Model.Requests;
 using eServisnaKnjiga.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,11 +17,18 @@ namespace eServisnaKnjiga.Controllers
             _logger = logger;
             _pServizvodiService = proizvodiService;
         }
-
+        
         [HttpGet()]
         public IEnumerable<Model.Paketi> Get()
         {
             return _pServizvodiService.Get();
         }
+
+        [HttpPost]
+        public Model.Paketi Insert(PaketiInsertRequest request)
+        {
+            return _pServizvodiService.Insert(request);
+        }
+        
     }
 }

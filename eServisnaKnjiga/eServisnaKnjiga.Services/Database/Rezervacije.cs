@@ -19,5 +19,5 @@ public partial class Rezervacije
 
     public virtual ICollection<RadniNalog> RadniNalogs { get; set; } = new List<RadniNalog>();
 
-    public virtual ICollection<Paketi> Pakets { get; set; } = new List<Paketi>();
+    public virtual ICollection<RezervacijaPaketi> RezervacijaPaketis { get; set; } = new List<RezervacijaPaketi>();
 }

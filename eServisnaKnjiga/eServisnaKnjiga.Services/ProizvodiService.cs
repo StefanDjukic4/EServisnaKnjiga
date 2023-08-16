@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using eServisnaKnjiga.Model;
+using eServisnaKnjiga.Model.Requests;
 using eServisnaKnjiga.Services.Database;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ namespace eServisnaKnjiga.Services
 
         public IMapper _mapper;
 
-        public ProizvodiService(EServisnaKnjigaContext context, IMapper mapper) {
+        public ProizvodiService(EServisnaKnjigaContext context, IMapper mapper)
+        {
             _context = context;
             _mapper = mapper;
         }
@@ -28,12 +30,22 @@ namespace eServisnaKnjiga.Services
                 Naziv = "Naziv00"
             }
         };
-   
+
 
         public IList<Model.Paketi> Get()
-        {   
-            var list = _context.Paketis.ToList(); 
+        {
+            var list = _context.Paketis.ToList();
             return _mapper.Map<List<Model.Paketi>>(list);
+        }
+
+        Model.Paketi IProizvodiService.Insert(PaketiInsertRequest request)
+        {
+            var entity = new Database.Paketi();
+            _context.Paketis.Add(_mapper.Map(request, entity));
+            _context.SaveChanges();
+
+            return _mapper.Map<Model.Paketi>(entity);
+
         }
     }
 }

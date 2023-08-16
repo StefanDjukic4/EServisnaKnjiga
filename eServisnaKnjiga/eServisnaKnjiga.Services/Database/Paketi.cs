@@ -19,5 +19,5 @@ public partial class Paketi
 
     public virtual ICollection<Obavjesti> Obavjestis { get; set; } = new List<Obavjesti>();
 
-    public virtual ICollection<Rezervacije> Rezervacijas { get; set; } = new List<Rezervacije>();
+    public virtual ICollection<RezervacijaPaketi> RezervacijaPaketis { get; set; } = new List<RezervacijaPaketi>();
 }
