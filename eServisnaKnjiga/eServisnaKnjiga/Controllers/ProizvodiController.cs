@@ -29,6 +29,12 @@ namespace eServisnaKnjiga.Controllers
         {
             return _pServizvodiService.Insert(request);
         }
+
+        [HttpPut("{id}")]
+        public Model.Paketi Update(int id, PaketiUpdateRequest request)
+        {
+            return _pServizvodiService.Update(id, request);
+        }
         
     }
 }

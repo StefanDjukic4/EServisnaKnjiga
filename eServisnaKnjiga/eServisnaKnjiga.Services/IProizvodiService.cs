@@ -10,7 +10,10 @@ namespace eServisnaKnjiga.Services
     public interface IProizvodiService
     {
         IList<Model.Paketi> Get();
+
         Model.Paketi Insert(Model.Requests.PaketiInsertRequest request);
+
+        Model.Paketi Update(int id,Model.Requests.PaketiUpdateRequest request);
 
     }
 }

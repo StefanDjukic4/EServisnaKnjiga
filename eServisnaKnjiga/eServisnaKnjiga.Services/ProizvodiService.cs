@@ -47,5 +47,16 @@ namespace eServisnaKnjiga.Services
             return _mapper.Map<Model.Paketi>(entity);
 
         }
+
+        public Model.Paketi Update(int id, PaketiUpdateRequest request)
+        {
+            var entity = _context.Paketis.Find(id);
+
+            _mapper.Map(request, entity);
+            
+            _context.SaveChanges();
+
+            return _mapper.Map<Model.Paketi>(entity);
+        }
     }
 }
