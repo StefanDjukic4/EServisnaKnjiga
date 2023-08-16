@@ -1,4 +1,4 @@
-﻿using eServisnaKnjiga.Model;
+﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services
 {
-    public interface IProizvodiService
+    public class MappingProfile : Profile
     {
-        IList<Model.Paketi> Get();
-
+        public MappingProfile() {
+            CreateMap<Database.Paketi, Model.Paketi>();
+        }
     }
 }

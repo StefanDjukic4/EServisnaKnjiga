@@ -18,7 +18,7 @@ namespace eServisnaKnjiga.Controllers
         }
 
         [HttpGet()]
-        public IEnumerable<Proizvodi> Get()
+        public IEnumerable<Model.Paketi> Get()
         {
             return _pServizvodiService.Get();
         }
