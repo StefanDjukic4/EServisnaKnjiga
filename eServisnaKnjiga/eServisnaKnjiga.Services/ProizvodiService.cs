@@ -2,6 +2,7 @@
 using eServisnaKnjiga.Model;
 using eServisnaKnjiga.Model.Requests;
 using eServisnaKnjiga.Services.Database;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,15 +33,17 @@ namespace eServisnaKnjiga.Services
         };
 
 
-        public IList<Model.Paketi> Get()
+        public async Task<IList<Model.Paketi>> Get()
         {
-            var list = _context.Paketis.ToList();
+            var list = await _context.Paketis.ToListAsync();
+
             return _mapper.Map<List<Model.Paketi>>(list);
         }
 
         Model.Paketi IProizvodiService.Insert(PaketiInsertRequest request)
         {
             var entity = new Database.Paketi();
+
             _context.Paketis.Add(_mapper.Map(request, entity));
             _context.SaveChanges();
 

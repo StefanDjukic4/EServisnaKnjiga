@@ -19,9 +19,9 @@ namespace eServisnaKnjiga.Controllers
         }
         
         [HttpGet()]
-        public IEnumerable<Model.Paketi> Get()
+        public async Task<IEnumerable<Model.Paketi>> Get()
         {
-            return _pServizvodiService.Get();
+            return await _pServizvodiService.Get();
         }
 
         [HttpPost]

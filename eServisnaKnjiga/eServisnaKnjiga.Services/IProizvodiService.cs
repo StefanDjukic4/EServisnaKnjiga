@@ -9,7 +9,7 @@ namespace eServisnaKnjiga.Services
 {
     public interface IProizvodiService
     {
-        IList<Model.Paketi> Get();
+        Task<IList<Model.Paketi>> Get();
 
         Model.Paketi Insert(Model.Requests.PaketiInsertRequest request);
 
