@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Model.SearchObjects
 {
-    public class AutomobilSerchaObject
+    public class AutomobilSerchaObject : BaseSearchObject
     {
         public string? Marka { get; set; }
         public string? Model { get; set; }

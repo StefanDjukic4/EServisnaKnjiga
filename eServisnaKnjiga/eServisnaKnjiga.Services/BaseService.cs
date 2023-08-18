@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using eServisnaKnjiga.Model.SearchObjects;
 using eServisnaKnjiga.Services.Database;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services
 {
-    public class BaseService<T, TDb, TSearch> : IService<T, TSearch> where TDb : class where T : class where TSearch : class
+    public class BaseService<T, TDb, TSearch> : IService<T, TSearch> where TDb : class where T : class where TSearch : BaseSearchObject
     {
         protected EServisnaKnjigaContext _context;
 
@@ -23,6 +24,10 @@ namespace eServisnaKnjiga.Services
         public virtual async Task<List<T>> Get(TSearch search)
         {
             var query = _context.Set<TDb>().AsQueryable();
+
+            if(search?.page.HasValue == true && search?.pageSize.HasValue == true){
+                query = query.Skip(search.page.Value * search.pageSize.Value).Take(search.pageSize.Value);
+            }
 
             query = AddFilter(query,search);
 

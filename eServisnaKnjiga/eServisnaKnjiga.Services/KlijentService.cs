@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using eServisnaKnjiga.Model;
 using eServisnaKnjiga.Model.Requests;
+using eServisnaKnjiga.Model.SearchObjects;
 using eServisnaKnjiga.Services.Database;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services
 {
-    public class KlijentService : BaseService<Model.Klijent, Database.Klijent, object>, IKlijentService
+    public class KlijentService : BaseService<Model.Klijent, Database.Klijent, BaseSearchObject>, IKlijentService
     {
         public KlijentService(EServisnaKnjigaContext context, IMapper mapper) 
             : base(context,mapper){}
