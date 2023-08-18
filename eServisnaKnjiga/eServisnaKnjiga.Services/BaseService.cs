@@ -9,23 +9,31 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services
 {
-    public class BaseService<T, TDb> : IService<T> where TDb : class where T : class
+    public class BaseService<T, TDb, TSearch> : IService<T, TSearch> where TDb : class where T : class where TSearch : class
     {
-        EServisnaKnjigaContext _context;
+        protected EServisnaKnjigaContext _context;
 
-        public IMapper _mapper { get; set; }
+        protected IMapper _mapper { get; set; }
 
         public BaseService(EServisnaKnjigaContext context,IMapper mapper) {
             _context = context;
             _mapper = mapper;
         }
-        public async Task<List<T>> Get()
+
+        public virtual async Task<List<T>> Get(TSearch search)
         {
             var query = _context.Set<TDb>().AsQueryable();
 
             var list = await query.ToListAsync();
 
             return _mapper.Map<List<T>>(list);
+        }
+
+        public virtual async Task<T> GetById(int id)
+        {
+            var entity = await _context.Set<TDb>().FindAsync(id);
+
+            return _mapper.Map<T>(entity);
         }
     }
 }

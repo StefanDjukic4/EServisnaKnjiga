@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace eServisnaKnjiga.Controllers
 {
     [ApiController]
-    public class AutomobilController : BaseController<Model.Automobil>
-    {  
-        public AutomobilController(ILogger<BaseController<Automobil>> logger, IAutomobilService Service) : base(logger, Service) { }
-       
+    public class KlijentiController : BaseController<Model.Klijent, object>
+    {
+        public KlijentiController(ILogger<BaseController<Model.Klijent, object>> logger, IKlijentService Service) : base(logger, Service) { }
+
     }
 }

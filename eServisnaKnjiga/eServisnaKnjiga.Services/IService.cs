@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services
 {
-    public interface IService<T>
+    public interface IService<T, TSearch> where TSearch : class
     {
-        Task<List<T>> Get();
+        Task<List<T>> Get(TSearch? search = null);
+
+        Task<T> GetById(int id);
     }
 }

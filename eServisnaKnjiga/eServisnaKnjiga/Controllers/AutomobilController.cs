@@ -1,14 +1,15 @@
 using eServisnaKnjiga.Model;
 using eServisnaKnjiga.Model.Requests;
+using eServisnaKnjiga.Model.SearchObjects;
 using eServisnaKnjiga.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eServisnaKnjiga.Controllers
 {
     [ApiController]
-    public class KlijentiController : BaseController<Model.Klijent>
-    {  
-        public KlijentiController(ILogger<BaseController<Model.Klijent>> logger, IService<Model.Klijent> Service) : base(logger, Service) { }
-       
+    public class AutomobilController : BaseController<Model.Automobil, AutomobilSerchaObject>
+    {
+        public AutomobilController(ILogger<BaseController<Automobil,AutomobilSerchaObject>> logger, IAutomobilService Service) : base(logger, Service) { }
+
     }
 }

@@ -6,21 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 namespace eServisnaKnjiga.Controllers
 {
     [Route("[controller]")]
-    public class BaseController<T> : ControllerBase where T : class
+    public class BaseController<T, TSearch> : ControllerBase where T : class where TSearch : class
     {
-        private readonly IService<T> _Service;
-        private readonly ILogger<BaseController<T>> _logger;
+        private readonly IService<T, TSearch> _Service;
+        private readonly ILogger<BaseController<T, TSearch>> _logger;
 
-        public BaseController(ILogger<BaseController<T>> logger, IService<T> Service)
+        public BaseController(ILogger<BaseController<T, TSearch>> logger, IService<T, TSearch> Service)
         {
             _logger = logger;
             _Service = Service;
         }
         
         [HttpGet()]
-        public async Task<IEnumerable<T>> Get()
+        public async Task<IEnumerable<T>> Get([FromQuery] TSearch? search = null)
         {
-            return await _Service.Get();
+            return await _Service.Get(search);
+        }
+
+        [HttpGet("{id}")] 
+        public async Task<T> GetById(int id)
+        {
+            return await _Service.GetById(id);
         }
         
     }

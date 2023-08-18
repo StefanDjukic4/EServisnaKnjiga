@@ -8,9 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<IProizvodiService, ProizvodiService>();
 builder.Services.AddTransient<IAutomobilService, AutomobilService>();
-builder.Services.AddTransient<IService<eServisnaKnjiga.Model.Klijent>, BaseService<eServisnaKnjiga.Model.Klijent,
-    eServisnaKnjiga.Services.Database.Klijent>>();
- 
+builder.Services.AddTransient<IKlijentService, KlijentService>();
+
 builder.Services.AddControllers(); 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
