@@ -24,9 +24,16 @@ namespace eServisnaKnjiga.Services
         {
             var query = _context.Set<TDb>().AsQueryable();
 
+            query = AddFilter(query,search);
+
             var list = await query.ToListAsync();
 
             return _mapper.Map<List<T>>(list);
+        }
+
+        public virtual IQueryable<TDb> AddFilter(IQueryable<TDb> query,TSearch? search = null)
+        {
+            return query;
         }
 
         public virtual async Task<T> GetById(int id)

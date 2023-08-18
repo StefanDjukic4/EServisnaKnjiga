@@ -17,11 +17,8 @@ namespace eServisnaKnjiga.Services
         public AutomobilService(EServisnaKnjigaContext context, IMapper mapper) 
             : base(context,mapper){}
 
-        public override async Task<List<Model.Automobil>> Get(AutomobilSerchaObject search)
+        public override IQueryable<Database.Automobil> AddFilter(IQueryable<Database.Automobil> query, AutomobilSerchaObject? search = null)
         {
-           
-            var query = _context.Set<Database.Automobil>().AsQueryable();
-
             if (!string.IsNullOrWhiteSpace(search?.Marka))
             {
                 query = query.Where(x => x.Marka.StartsWith(search.Marka));
@@ -42,9 +39,7 @@ namespace eServisnaKnjiga.Services
                 query = query.Where(x => x.Model.StartsWith(search.Model));
             }
 
-            var list = await query.ToListAsync();
-
-            return _mapper.Map<List<Model.Automobil>>(list);
+            return base.AddFilter(query, search);
         }
 
     }
