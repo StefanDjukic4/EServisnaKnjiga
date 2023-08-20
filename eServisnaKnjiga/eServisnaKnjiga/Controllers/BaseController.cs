@@ -18,7 +18,7 @@ namespace eServisnaKnjiga.Controllers
         }
         
         [HttpGet()]
-        public async Task<IEnumerable<T>> Get([FromQuery] TSearch? search = null)
+        public async Task<PageResult<T>> Get([FromQuery] TSearch? search = null)
         {
             return await _Service.Get(search);
         }

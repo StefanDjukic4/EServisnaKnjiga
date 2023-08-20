@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using eServisnaKnjiga.Model;
 using eServisnaKnjiga.Model.SearchObjects;
 using eServisnaKnjiga.Services.Database;
 using Microsoft.EntityFrameworkCore;
@@ -21,19 +22,27 @@ namespace eServisnaKnjiga.Services
             _mapper = mapper;
         }
 
-        public virtual async Task<List<T>> Get(TSearch search)
+        public virtual async Task<PageResult<T>> Get(TSearch search)
         {
             var query = _context.Set<TDb>().AsQueryable();
 
-            if(search?.page.HasValue == true && search?.pageSize.HasValue == true){
+            PageResult<T> result = new PageResult<T>();
+
+            query = AddFilter(query, search);
+
+            result.Count = await query.CountAsync();
+
+            if (search?.page.HasValue == true && search?.pageSize.HasValue == true){
                 query = query.Skip(search.page.Value * search.pageSize.Value).Take(search.pageSize.Value);
             }
 
-            query = AddFilter(query,search);
-
             var list = await query.ToListAsync();
 
-            return _mapper.Map<List<T>>(list);
+            var tmp = _mapper.Map<List<T>>(list);
+
+            result.Result = tmp;
+
+            return result;
         }
 
         public virtual IQueryable<TDb> AddFilter(IQueryable<TDb> query,TSearch? search = null)

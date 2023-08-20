@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eServisnaKnjiga.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace eServisnaKnjiga.Services
 {
     public interface IService<T, TSearch> where TSearch : class
     {
-        Task<List<T>> Get(TSearch? search = null);
+        Task<PageResult<T>> Get(TSearch? search = null);
 
         Task<T> GetById(int id);
     }
