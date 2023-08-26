@@ -16,6 +16,8 @@ namespace eServisnaKnjiga.Services
             CreateMap<Model.Requests.PaketiUpdateRequest, Database.Paketi>();
             CreateMap<Database.Automobil, Model.Automobil>();
             CreateMap<Database.Klijent, Model.Klijent>();
+            CreateMap<Database.Korisnici, Model.Korisnici>();
+            CreateMap<Database.Role, Model.Role>();
 
         }
     }

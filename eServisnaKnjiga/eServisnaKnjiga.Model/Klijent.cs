@@ -17,4 +17,6 @@ public partial class Klijent
 
     public string? Adresa { get; set; }
 
+    public virtual ICollection<Korisnici> Korisnicis { get; set; } = new List<Korisnici>();
+
 }

@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddTransient<IProizvodiService, ProizvodiService>();
+builder.Services.AddTransient<IPaketiService, PaketiService>();
 builder.Services.AddTransient<IAutomobilService, AutomobilService>();
 builder.Services.AddTransient<IKlijentService, KlijentService>();
 
@@ -19,7 +19,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<EServisnaKnjigaContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddAutoMapper(typeof(IProizvodiService));
+builder.Services.AddAutoMapper(typeof(IPaketiService));
 
 var app = builder.Build();
 

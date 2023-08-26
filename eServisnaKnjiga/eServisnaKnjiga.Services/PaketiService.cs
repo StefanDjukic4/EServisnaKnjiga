@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using eServisnaKnjiga.Model;
 using eServisnaKnjiga.Model.Requests;
+using eServisnaKnjiga.Model.SearchObjects;
 using eServisnaKnjiga.Services.Database;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,36 +12,13 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services
 {
-    public class ProizvodiService : IProizvodiService
+    public class PaketiService : BaseCRUDService<Model.Paketi,Database.Paketi,BaseSearchObject,PaketiInsertRequest,PaketiUpdateRequest>  , IPaketiService
     {
-        EServisnaKnjigaContext _context;
-
-        public IMapper _mapper;
-
-        public ProizvodiService(EServisnaKnjigaContext context, IMapper mapper)
+        public PaketiService(EServisnaKnjigaContext context, IMapper mapper) : base(context, mapper)
         {
-            _context = context;
-            _mapper = mapper;
         }
-
-        List<Proizvodi> _proizvodiList = new List<Proizvodi>()
-        {
-            new Proizvodi() {
-                ProizvodId = 0,
-                ProizvodName = "Naziv0",
-                Naziv = "Naziv00"
-            }
-        };
-
-
-        public async Task<IList<Model.Paketi>> Get()
-        {
-            var list = await _context.Paketis.ToListAsync();
-
-            return _mapper.Map<List<Model.Paketi>>(list);
-        }
-
-        Model.Paketi IProizvodiService.Insert(PaketiInsertRequest request)
+        /*
+        Model.Paketi IPaketiService.Insert(PaketiInsertRequest request)
         {
             var entity = new Database.Paketi();
 
@@ -61,5 +39,6 @@ namespace eServisnaKnjiga.Services
 
             return _mapper.Map<Model.Paketi>(entity);
         }
+        */
     }
 }

@@ -8,8 +8,8 @@ namespace eServisnaKnjiga.Controllers
     [Route("[controller]")]
     public class BaseController<T, TSearch> : ControllerBase where T : class where TSearch : class
     {
-        private readonly IService<T, TSearch> _Service;
-        private readonly ILogger<BaseController<T, TSearch>> _logger;
+        protected readonly IService<T, TSearch> _Service;
+        protected readonly ILogger<BaseController<T, TSearch>> _logger;
 
         public BaseController(ILogger<BaseController<T, TSearch>> logger, IService<T, TSearch> Service)
         {

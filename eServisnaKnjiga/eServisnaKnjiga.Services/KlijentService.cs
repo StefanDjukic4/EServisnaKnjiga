@@ -17,5 +17,12 @@ namespace eServisnaKnjiga.Services
         public KlijentService(EServisnaKnjigaContext context, IMapper mapper) 
             : base(context,mapper){}
 
+        public override IQueryable<Database.Klijent> AddInclude(IQueryable<Database.Klijent> query, BaseSearchObject? search = null)
+        {
+            query = query.Include("Korisnicis.Role");
+            return base.AddInclude(query, search);
+        }
     }
+
+   
 }

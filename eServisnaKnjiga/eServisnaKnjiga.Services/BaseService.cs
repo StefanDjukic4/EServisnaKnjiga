@@ -30,6 +30,8 @@ namespace eServisnaKnjiga.Services
 
             query = AddFilter(query, search);
 
+            query = AddInclude(query, search);
+
             result.Count = await query.CountAsync();
 
             if (search?.page.HasValue == true && search?.pageSize.HasValue == true){
@@ -45,7 +47,12 @@ namespace eServisnaKnjiga.Services
             return result;
         }
 
-        public virtual IQueryable<TDb> AddFilter(IQueryable<TDb> query,TSearch? search = null)
+        public virtual IQueryable<TDb> AddInclude(IQueryable<TDb> query, TSearch? search = null)
+        {
+            return query;
+        }
+
+        public virtual IQueryable<TDb> AddFilter(IQueryable<TDb> query, TSearch? search = null)
         {
             return query;
         }
