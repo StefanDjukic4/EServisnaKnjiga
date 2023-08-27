@@ -21,6 +21,9 @@ namespace eServisnaKnjiga.Services
             CreateMap<Database.Novosti, Model.Novosti>();
             CreateMap<Model.Requests.NovostiInsertRequest, Database.Novosti>();
             CreateMap<Model.Requests.NovostiUpdateRequest, Database.Novosti>();
+            CreateMap<Database.Rezervacije, Model.Rezervacije>();
+            CreateMap<Model.Requests.RezervacijeInsertRequest, Database.Rezervacije>();
+            CreateMap<Model.Requests.RezervacijeUpdateRequest, Database.Rezervacije>();
 
         }
     }
