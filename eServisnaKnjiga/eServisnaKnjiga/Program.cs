@@ -1,3 +1,4 @@
+using eServisnaKnjiga.Filters;
 using eServisnaKnjiga.Services;
 using eServisnaKnjiga.Services.Database;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,10 @@ builder.Services.AddTransient<IAutomobilService, AutomobilService>();
 builder.Services.AddTransient<IKlijentService, KlijentService>();
 builder.Services.AddTransient<INovostiService, NovostiService>();
 
-builder.Services.AddControllers(); 
+builder.Services.AddControllers( x =>
+{
+    x.Filters.Add<ErrorFilter>();
+}); 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
