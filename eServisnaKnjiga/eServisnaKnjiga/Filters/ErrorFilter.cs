@@ -10,7 +10,7 @@ namespace eServisnaKnjiga.Filters
         public override void OnException(ExceptionContext context)
         {
             if (context.Exception is UserException){
-                context.ModelState.AddModelError("error", context.Exception.Message);
+                context.ModelState.AddModelError("userError", context.Exception.Message);
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
             else{
