@@ -18,6 +18,16 @@ namespace eServisnaKnjiga.Controllers
         {
             return await (_Service as IRezervacijeService).Accepted(id);
         }
+        [HttpPut("{id}/canceled")]
+        public virtual async Task<Rezervacije> Canceled(int id)
+        {
+            return await (_Service as IRezervacijeService).Canceled(id);
+        }
+        [HttpGet("{id}/allowedActions")]
+        public virtual async Task<List<string>> AllowedActions(int id)
+        {
+            return await (_Service as IRezervacijeService).AllowedActions(id);
+        }
 
     }
 }

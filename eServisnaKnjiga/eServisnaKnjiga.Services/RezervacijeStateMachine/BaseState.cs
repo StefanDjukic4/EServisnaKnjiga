@@ -37,7 +37,7 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
         {
             throw new Exception("Not allowed");
         }
-        public virtual Task<Model.Rezervacije> Decline(int id)
+        public virtual Task<Model.Rezervacije> Canceled(int id)
         {
             throw new Exception("Not allowed");
         }
@@ -51,6 +51,7 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
             switch (stateName)
             {
                 case "initial":
+                case null:
                     return _serviceProvider.GetService<InitialRezervacijaState>();
                     break;
                 case "created":
@@ -59,10 +60,18 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
                 case "accepted":
                     return _serviceProvider.GetService<AcceptedRezervacijaState>();
                     break;
+                case "canceled":
+                    return _serviceProvider.GetService<CanceledRezervacijaState>();
+                    break;
                 default:
                     throw new Exception("Not allowed");
 
             }
+        }
+
+        public virtual async Task<List<string>> AllowedActions()
+        {
+            return new List<string>();
         }
     }
 }

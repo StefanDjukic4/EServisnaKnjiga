@@ -14,9 +14,26 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
     {
         public AcceptedRezervacijaState(IServiceProvider serviceProvider, Database.EServisnaKnjigaContext context, IMapper mapper) : base(serviceProvider, context, mapper) {}
 
-        public override Task<Rezervacije> Decline(int id)
+        public override async Task<Rezervacije> Canceled(int id)
         {
-            return base.Decline(id);
+            var set = _context.Set<Database.Rezervacije>();
+
+            var entity = await set.FindAsync(id);
+
+            entity.Status = "canceled";
+
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<Model.Rezervacije>(entity);
+        }
+
+        public override async Task<List<string>> AllowedActions()
+        {
+            var list = await base.AllowedActions();
+
+            list.Add("Canceled");
+
+            return list;
         }
     }
 }

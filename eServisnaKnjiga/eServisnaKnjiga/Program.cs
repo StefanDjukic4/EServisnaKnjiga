@@ -21,6 +21,7 @@ builder.Services.AddTransient<BaseState>();
 builder.Services.AddTransient<InitialRezervacijaState>();
 builder.Services.AddTransient<AcceptedRezervacijaState>();
 builder.Services.AddTransient<CreatedRezervacijaState>();
+builder.Services.AddTransient<CanceledRezervacijaState>();
 
 builder.Services.AddControllers( x =>
 {

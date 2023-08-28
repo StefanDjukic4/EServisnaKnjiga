@@ -48,5 +48,23 @@ namespace eServisnaKnjiga.Services
             return await state.Accepted(id);
         }
 
+        public async Task<Model.Rezervacije> Canceled(int id)
+        {
+            var entity = await _context.Rezervacijes.FindAsync(id);
+
+            var state = _baseState.CreateState(entity.Status);
+
+            return await state.Canceled(id);
+        }
+
+        public async Task<List<string>> AllowedActions (int id)
+        {
+            var entity = await _context.Rezervacijes.FindAsync(id);
+            var state = _baseState.CreateState(entity?.Status);
+
+            return await state.AllowedActions();
+
+        }
+
     }
 }

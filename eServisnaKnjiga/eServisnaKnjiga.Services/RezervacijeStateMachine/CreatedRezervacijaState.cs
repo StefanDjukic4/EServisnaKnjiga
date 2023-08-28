@@ -40,5 +40,17 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
              
             return _mapper.Map<Model.Rezervacije>(entity);
         }
+
+        public override async Task<List<string>> AllowedActions()
+        {
+            var list = await base.AllowedActions();
+
+            list.Add("Update");
+            list.Add("Accepted");
+
+            //Disabled polja sa ovim??
+
+            return list;
+        }
     }
 }
