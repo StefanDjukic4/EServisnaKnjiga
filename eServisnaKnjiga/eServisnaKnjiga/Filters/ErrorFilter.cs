@@ -14,7 +14,7 @@ namespace eServisnaKnjiga.Filters
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             }
             else{
-                context.ModelState.AddModelError("ERROR", "Server side error");
+                context.ModelState.AddModelError("ERROR", context.Exception.Message);
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using eServisnaKnjiga.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
 using Microsoft.Identity.Client;
 using System.Net.Http.Headers;
@@ -10,8 +11,11 @@ namespace eServisnaKnjiga
 {
     public class BasicAuthentificationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
-        public BasicAuthentificationHandler(IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock)
+        IKlijentService _korisniciService;
+
+        public BasicAuthentificationHandler(IKlijentService korisniciService, IOptionsMonitor<AuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock)
         {
+            _korisniciService = korisniciService;
         }
 
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -23,18 +27,27 @@ namespace eServisnaKnjiga
 
             var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
             var credentialsBytes = Convert.FromBase64String(authHeader.Parameter);
-            var credentials = Encoding.UTF8.GetString(credentialsBytes);
+            var credentials = Encoding.UTF8.GetString(credentialsBytes).Split(':');
 
             var username = credentials[0];
             var password = credentials[1];
 
-            if(username == null || password == null)
+            var user = await _korisniciService.Login(username, password);
+
+            if(user==null)
             {
                 return AuthenticateResult.Fail("Incorect username or password");
             }
             else
             {
-                var identity = new ClaimsIdentity();
+                var claims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Name, user.Ime ),
+                    new Claim(ClaimTypes.NameIdentifier, user.Email ),
+                    new Claim(ClaimTypes.Role, user.Korisnicis.FirstOrDefault().Role.Naziv)
+                };
+
+                var identity = new ClaimsIdentity(claims, Scheme.Name);
                 var principal = new ClaimsPrincipal(identity);
 
                 var ticket = new AuthenticationTicket(principal, Scheme.Name);

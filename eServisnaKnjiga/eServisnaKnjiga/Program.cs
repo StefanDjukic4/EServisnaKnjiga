@@ -15,6 +15,7 @@ builder.Services.AddTransient<IPaketiService, PaketiService>();
 builder.Services.AddTransient<IAutomobilService, AutomobilService>();
 builder.Services.AddTransient<IKlijentService, KlijentService>();
 builder.Services.AddTransient<INovostiService, NovostiService>();
+builder.Services.AddTransient<IKorisniciService, KorisniciService>();
 builder.Services.AddTransient<IRezervacijeService, RezervacijeService>();
 builder.Services.AddTransient<BaseState>();
 builder.Services.AddTransient<InitialRezervacijaState>();
