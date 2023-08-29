@@ -2,6 +2,7 @@
 using Azure.Core;
 using eServisnaKnjiga.Model;
 using eServisnaKnjiga.Model.Requests;
+using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,25 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
             entity.Status = "accepted";
 
             await _context.SaveChangesAsync();
-             
+
+            var factory = new ConnectionFactory { HostName = "localhost" };
+            using var connection = factory.CreateConnection();
+            using var channel = connection.CreateModel();
+
+            channel.QueueDeclare(queue: "hello",
+                                 durable: false,
+                                 exclusive: false,
+                                 autoDelete: false,
+                                 arguments: null);
+
+            const string message = "Hello Wordl!";
+            var body = Encoding.UTF8.GetBytes(message);
+
+            channel.BasicPublish(exchange: string.Empty,
+                                 routingKey: "hello",
+                                 basicProperties: null,
+                                 body: body);
+
             return _mapper.Map<Model.Rezervacije>(entity);
         }
 
