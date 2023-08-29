@@ -1,10 +1,12 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using EasyNetQ;
+using eServisnaKnjiga.Model;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
 
 Console.WriteLine("Hello, World!");
-
+/*
 var factory = new ConnectionFactory { HostName = "localhost" };
 using var connection = factory.CreateConnection();
 using var channel = connection.CreateModel();
@@ -31,3 +33,16 @@ channel.BasicConsume(queue:"hello",
 
 Console.WriteLine(" Press [enter] to exit.");
 Console.ReadLine();
+*/
+
+using (var bus = RabbitHutch.CreateBus("host=localhost"))
+{
+    bus.PubSub.Subscribe<eServisnaKnjiga.Model.Rezervacije>("test", HandleTextMassage);
+    Console.WriteLine("Listening for massages. Hit <return> to quit.");
+    Console.ReadLine();
+}
+
+void HandleTextMassage(Rezervacije entity)
+{
+    Console.WriteLine($"Recived: {entity?.Datum}");
+}
