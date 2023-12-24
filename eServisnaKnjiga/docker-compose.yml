@@ -1,0 +1,36 @@
+version: '3'
+services:
+#sql
+ eservisnaknjiga-sql:
+  image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+  restart: unless-stopped
+  environment:
+   - ACCEPT_EULA=Y
+   - SA_PASSWORD=${DB_PASSWORD}
+   - MSSQL_PID=Developer
+  ports:
+   - 1401:1433
+  expose:
+   - 1433
+  networks:
+   - eservisnaknjiga
+
+ eservisnaknjiga-api:
+  restart: unless-stopped
+  build:
+   context: .
+  environment:
+   - ConnectionStrings:DefaultConnection=Server=eservisnaknjiga-sql,1433;Database=eServisnaKnjiga;User=${DB_USERNAME};Password=${DB_PASSWORD};ConnectRetryCount=0;TrustServerCertificate=True
+   - ASPNETCORE_ENVIRONMENT=Development
+  ports:
+   - 7042:7042
+  networks:
+   - eservisnaknjiga
+  links:
+   - eservisnaknjiga-sql
+  depends_on:
+   - eservisnaknjiga-sql
+#network
+networks:
+ eservisnaknjiga:
+  driver: bridge
