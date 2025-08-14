@@ -17,7 +17,7 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
     {
         public CreatedRezervacijaState(IServiceProvider serviceProvider, Database.EServisnaKnjigaContext context, IMapper mapper) : base(serviceProvider, context, mapper) { }
 
-        public override async Task<Rezervacije> Update(int id, RezervacijeUpdateRequest request)
+        public override async Task<Rezervacije> Modify(int id, RezervacijeUpdateRequest request)
         {
             var set = _context.Set<Database.Rezervacije>();
 
@@ -25,9 +25,31 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
 
             _mapper.Map(request, entity);
 
+            entity.Status = "modify";
+
             await _context.SaveChangesAsync();
 
-            return _mapper.Map<Model.Rezervacije>(entity);
+
+            if (entity.Automobil == null)
+            {
+                await _context.Entry(entity).Reference(r => r.Automobil).LoadAsync();
+            }
+
+            if (entity.Automobil?.Klijent == null)
+            {
+                await _context.Entry(entity.Automobil).Reference(a => a.Klijent).LoadAsync();
+            }
+
+            var mapEntity = _mapper.Map<Model.Rezervacije>(entity);
+
+            var bus = RabbitHutch.CreateBus("host=localhost");
+            var sms = new SmsMessage
+            {
+                PhoneNumber = mapEntity.Automobil.Klijent.Telefon,
+                Text = $"Vasa rezervacija za vozilo {mapEntity.Automobil.Marka}, registarnskih oznaka {mapEntity.Automobil.Registracija} je pomjerena na termin {mapEntity.Datum}"
+            };
+
+            return mapEntity;
         }
 
         public override async Task<Rezervacije> Accepted(int id)
@@ -60,11 +82,60 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
                                  body: body);
             */
 
+
+            if (entity.Automobil == null)
+            {
+                await _context.Entry(entity).Reference(r => r.Automobil).LoadAsync();
+            }
+
+            if (entity.Automobil?.Klijent == null)
+            {
+                await _context.Entry(entity.Automobil).Reference(a => a.Klijent).LoadAsync();
+            }
+
             var mapEntity = _mapper.Map<Model.Rezervacije>(entity);
 
             var bus = RabbitHutch.CreateBus("host=localhost");
+            var sms = new SmsMessage
+            {
+                PhoneNumber = mapEntity.Automobil.Klijent.Telefon,
+                Text = $"Vasa rezervacija za vozilo {mapEntity.Automobil.Marka}, registarnskih oznaka {mapEntity.Automobil.Registracija} je prihvacena u terminu {mapEntity.Datum}"
+            };
 
-            bus.PubSub.Publish(mapEntity);
+            await bus.PubSub.PublishAsync(sms);
+
+            return mapEntity;
+        }
+
+        public override async Task<Rezervacije> Canceled(int id)
+        {
+            var set = _context.Set<Database.Rezervacije>();
+
+            var entity = await set.FindAsync(id);
+
+            entity.Status = "canceled";
+
+            await _context.SaveChangesAsync();
+
+
+            if (entity.Automobil == null)
+            {
+                await _context.Entry(entity).Reference(r => r.Automobil).LoadAsync();
+            }
+
+            if (entity.Automobil?.Klijent == null)
+            {
+                await _context.Entry(entity.Automobil).Reference(a => a.Klijent).LoadAsync();
+            }
+
+            var mapEntity = _mapper.Map<Model.Rezervacije>(entity);
+
+            var bus = RabbitHutch.CreateBus("host=localhost");
+            var sms = new SmsMessage
+            {
+                PhoneNumber = mapEntity.Automobil.Klijent.Telefon,
+                Text = $"Vasa rezervacija za vozilo {mapEntity.Automobil.Marka}, registarnskih oznaka {mapEntity.Automobil.Registracija}, je odbijena za termin {mapEntity.Datum}"
+            };
 
             return mapEntity;
         }
@@ -73,8 +144,9 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
         {
             var list = await base.AllowedActions();
 
-            list.Add("Update");
-            list.Add("Accepted");
+            list.Add("modify");
+            list.Add("accepted");
+            list.Add("canceled");
 
             //Disabled polja sa ovim??
 

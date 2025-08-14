@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services
 {
-    public interface INovostiService : ICruedService<Model.Novosti,NovostiSerchaObject,Model.Requests.NovostiInsertRequest,Model.Requests.NovostiUpdateRequest>
+    public interface INovostiService : ICruedDeleteService<Model.Novosti,NovostiSerchaObject,Model.Requests.NovostiInsertRequest,Model.Requests.NovostiUpdateRequest>
     {
-
+        Task<PageResult<Model.Novosti>> ClientNews();
     }
 }

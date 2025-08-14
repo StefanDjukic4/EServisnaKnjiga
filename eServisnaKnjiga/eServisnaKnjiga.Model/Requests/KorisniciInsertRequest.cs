@@ -11,11 +11,13 @@ namespace eServisnaKnjiga.Model.Requests
 
         public string? Email { get; set; }
 
-        public string? Lozinka { get; set; }
+        public string? Ime { get; set; }
 
-        public int? KlijentId { get; set; }
+        public string? Prezime { get; set; }
 
-        public int? RoleId { get; set; }
+        public string? Telefon { get; set; }
+
+        public string? Adresa { get; set; }
 
     }
 }

@@ -27,23 +27,35 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
 
         public virtual Task<Model.Rezervacije> Insert(RezervacijeInsertRequest request)
         {
-            throw new Exception("Not allowed");
+            throw new Exception("Izmjena statusa nije dozvoljena");
         }
         public virtual Task<Model.Rezervacije> Update(int id, RezervacijeUpdateRequest request)
         {
-            throw new Exception("Not allowed");
+            throw new Exception("Izmjena statusa nije dozvoljena");
         }
         public virtual Task<Model.Rezervacije> Accepted(int id)
         {
-            throw new Exception("Not allowed");
+            throw new Exception("Izmjena statusa nije dozvoljena");
+        }
+        public virtual Task<Model.Rezervacije> Modify(int id, RezervacijeUpdateRequest request)
+        {
+            throw new Exception("Izmjena statusa nije dozvoljena");
         }
         public virtual Task<Model.Rezervacije> Canceled(int id)
         {
-            throw new Exception("Not allowed");
+            throw new Exception("Izmjena statusa nije dozvoljena");
         }
         public virtual Task<Model.Rezervacije> Delete(int id)
         {
-            throw new Exception("Not allowed");
+            throw new Exception("Izmjena statusa nije dozvoljena");
+        }
+        public virtual Task<Model.Rezervacije> ClientSuccessfulPayment(int id)
+        {
+            throw new Exception("Izmjena statusa nije dozvoljena");
+        }
+        public virtual Task<String> ClientInitialzPayment(RadniNalogKlijentPlacanjeRequest request)
+        {
+            throw new Exception("Izmjena statusa nije dozvoljena");
         }
 
         public BaseState CreateState(string stateName)
@@ -60,11 +72,23 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
                 case "accepted":
                     return _serviceProvider.GetService<AcceptedRezervacijaState>();
                     break;
+                case "modify":
+                    return _serviceProvider.GetService<ModifyRezervacijaState>();
+                    break;
                 case "canceled":
                     return _serviceProvider.GetService<CanceledRezervacijaState>();
                     break;
+                case "paid_cash":
+                    return _serviceProvider.GetService<PaidCashRezervacijaState>();
+                    break;
+                case "pending_payment":
+                    return _serviceProvider.GetService<PendingPaymentRezervacijaState>();
+                    break;
+                case "paid_mpay":
+                    return _serviceProvider.GetService<PaidMpayRezervacijaState>();
+                    break;
                 default:
-                    throw new Exception("Not allowed");
+                    throw new Exception("Not allowed"); 
 
             }
         }

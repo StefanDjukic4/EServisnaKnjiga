@@ -1,36 +1,69 @@
 version: '3'
 services:
-#sql
- eservisnaknjiga-sql:
-  image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
-  restart: unless-stopped
-  environment:
-   - ACCEPT_EULA=Y
-   - SA_PASSWORD=${DB_PASSWORD}
-   - MSSQL_PID=Developer
-  ports:
-   - 1401:1433
-  expose:
-   - 1433
-  networks:
-   - eservisnaknjiga
+  eservisnaknjiga-sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${SQL_PASSWORD}
+      - MSSQL_PID=Developer
+    ports:
+      - 1401:1433
+    expose:
+      - 1433
+    networks:
+      - eservisnaknjiga
 
- eservisnaknjiga-api:
-  restart: unless-stopped
-  build:
-   context: .
-  environment:
-   - ConnectionStrings:DefaultConnection=Server=eservisnaknjiga-sql,1433;Database=eServisnaKnjiga;User=${DB_USERNAME};Password=${DB_PASSWORD};ConnectRetryCount=0;TrustServerCertificate=True
-   - ASPNETCORE_ENVIRONMENT=Development
-  ports:
-   - 7042:7042
-  networks:
-   - eservisnaknjiga
-  links:
-   - eservisnaknjiga-sql
-  depends_on:
-   - eservisnaknjiga-sql
-#network
+  eservisnaknjiga-api:
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - ConnectionStrings:DefaultConnection=Server=${SQL_HOST},1433;Database=${SQL_DB_NAME};User=${SQL_USER};Password=${SQL_PASSWORD};ConnectRetryCount=0;TrustServerCertificate=True
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_PORT=${RABBITMQ_PORT}
+      - RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
+    ports:
+      - 7042:7042
+    networks:
+      - eservisnaknjiga
+    depends_on:
+      - eservisnaknjiga-sql
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: unless-stopped
+    environment:
+      - RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - eservisnaknjiga
+
+  my-subscriber:
+    build:
+      context: .
+      dockerfile: ./eServisnaKnjiga.Subscriber/Dockerfile
+    restart: unless-stopped
+    environment:
+      - RABBITMQ_HOST=${RABBITMQ_HOST}
+      - RABBITMQ_PORT=${RABBITMQ_PORT}
+      - RABBITMQ_USERNAME=${RABBITMQ_USERNAME}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - VONAGE_API_KEY=${VONAGE_API_KEY}
+      - VONAGE_API_SECRET=${VONAGE_API_SECRET}
+    networks:
+      - eservisnaknjiga
+    depends_on:
+      - rabbitmq
+
 networks:
- eservisnaknjiga:
-  driver: bridge
+  eservisnaknjiga:
+    driver: bridge

@@ -11,9 +11,5 @@ namespace eServisnaKnjiga.Model.Requests
 
         public DateTime? Datum { get; set; }
 
-        public string? Opis { get; set; }
-
-        public string? Status { get; set; }
-
     }
 }

@@ -17,4 +17,6 @@ public partial class Rezervacije
 
     public virtual Automobil? Automobil { get; set; }
 
+    public virtual ICollection<RezervacijaPaketi> RezervacijaPaketi { get; set; } = new List<RezervacijaPaketi>();
+
 }

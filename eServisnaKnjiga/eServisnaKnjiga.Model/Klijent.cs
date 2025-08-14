@@ -19,4 +19,6 @@ public partial class Klijent
 
     public virtual ICollection<Korisnici> Korisnicis { get; set; } = new List<Korisnici>();
 
+    //public virtual ICollection<Automobil> Automobils { get; set; } = new List<Automobil>();
+
 }

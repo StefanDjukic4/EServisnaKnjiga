@@ -18,5 +18,7 @@ namespace eServisnaKnjiga.Model.Requests
 
         public string? IntervalObavjesti { get; set; }
 
+        public string? Slika { get; set; }
+
     }
 }

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eServisnaKnjiga", "eServisnaKnjiga\eServisnaKnjiga.csproj", "{A2C42920-3CAB-49B4-9955-ED787645CDFD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8D510C4D-6986-4BA1-A845-BBCE5C02244E} = {8D510C4D-6986-4BA1-A845-BBCE5C02244E}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eServisnaKnjiga.Model", "eServisnaKnjiga.Model\eServisnaKnjiga.Model.csproj", "{6D31D246-7894-4233-8B9A-0A8D074CEBB0}"
 EndProject

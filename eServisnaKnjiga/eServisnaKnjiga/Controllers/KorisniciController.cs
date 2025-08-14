@@ -2,6 +2,7 @@ using eServisnaKnjiga.Model;
 using eServisnaKnjiga.Model.Requests;
 using eServisnaKnjiga.Model.SearchObjects;
 using eServisnaKnjiga.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eServisnaKnjiga.Controllers
@@ -14,6 +15,5 @@ namespace eServisnaKnjiga.Controllers
         public KorisniciController(ILogger<BaseController<Korisnici, BaseSearchObject>> logger, IKorisniciService Service) : base(logger, Service) {
         }
 
-        
     }
 }

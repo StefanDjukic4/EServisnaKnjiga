@@ -15,4 +15,8 @@ public partial class Paketi
 
     public decimal? MaksimalnaCijena { get; set; }
 
+    public string? IntervalObavjesti { get; set; }
+
+    public string? Slika { get; set; }
+
 }

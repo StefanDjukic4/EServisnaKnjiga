@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services
 {
-    public class NovostiService : BaseCRUDService<Model.Novosti,Database.Novosti,NovostiSerchaObject,NovostiInsertRequest,NovostiUpdateRequest>  , INovostiService
+    public class NovostiService : BaseCRUDDeleteService<Model.Novosti,Database.Novosti,NovostiSerchaObject,NovostiInsertRequest,NovostiUpdateRequest>  , INovostiService
     {
         public NovostiService(EServisnaKnjigaContext context, IMapper mapper) : base(context, mapper)
         {
@@ -31,6 +31,22 @@ namespace eServisnaKnjiga.Services
             }
 
             return base.AddFilter(query, search);
+        }
+
+
+
+        public async Task<PageResult<Model.Novosti>> ClientNews()
+        {
+            PageResult<Model.Novosti> result = new PageResult<Model.Novosti>();
+
+            var products = await _context.Novostis
+                .ToListAsync();
+
+            result.Count = products.Count;
+
+            result.Result = _mapper.Map<List<Model.Novosti>>(products);
+
+            return result;
         }
     }
 }

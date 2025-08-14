@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
 using eServisnaKnjiga.Model;
 using eServisnaKnjiga.Model.Requests;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services.RezervacijeStateMachine
 {
@@ -20,10 +15,22 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
             var entity = _mapper.Map<Database.Rezervacije>(request);
 
             entity.Status = "created";
-            
+
             set.Add(entity);
 
             await _context.SaveChangesAsync();
+
+            if (request.packageIdList != null && request.packageIdList.Any())
+            {
+                var rezervacijaPaketi = request.packageIdList.Select(paketId => new Database.RezervacijaPaketi
+                {
+                    RezervacijaId = entity.Id,
+                    PaketId = paketId
+                }).ToList();
+
+                _context.Set<Database.RezervacijaPaketi>().AddRange(rezervacijaPaketi);
+                await _context.SaveChangesAsync();
+            }   
 
             return _mapper.Map<Model.Rezervacije>(entity);
         }
@@ -32,7 +39,7 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
         {
             var list = await base.AllowedActions();
 
-            list.Add("Insert");
+            list.Add("insert");
 
             return list;
         }

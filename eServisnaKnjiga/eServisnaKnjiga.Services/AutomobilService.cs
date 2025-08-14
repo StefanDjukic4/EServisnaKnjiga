@@ -12,11 +12,10 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services
 {
-    public class AutomobilService : BaseService<Model.Automobil, Database.Automobil, AutomobilSerchaObject>, IAutomobilService
+    public class AutomobilService : BaseCRUDService<Model.Automobil, Database.Automobil, AutomobilSerchaObject, AutomobiliInsertRequest, AutomobiliUpdateRequest>, IAutomobilService
     {
-        public AutomobilService(EServisnaKnjigaContext context, IMapper mapper) 
-            : base(context,mapper){}
-
+        public AutomobilService(EServisnaKnjigaContext context, IMapper mapper) : base(context, mapper) { }
+        
         public override IQueryable<Database.Automobil> AddFilter(IQueryable<Database.Automobil> query, AutomobilSerchaObject? search = null)
         {
             if (!string.IsNullOrWhiteSpace(search?.Marka))
@@ -42,5 +41,25 @@ namespace eServisnaKnjiga.Services
             return base.AddFilter(query, search);
         }
 
+        public override IQueryable<Database.Automobil> AddInclude(IQueryable<Database.Automobil> query, AutomobilSerchaObject? search = null)
+        {
+            query = query.Include("Klijent");
+            return base.AddInclude(query, search);
+        }
+
+        public async Task<PageResult<Model.Automobil>> ClientCars(int id)
+        {
+            PageResult<Model.Automobil> result = new PageResult<Model.Automobil>();
+
+            var products = await _context.Automobils
+                .Where(x => x.KlijentId == id)
+                .ToListAsync();
+
+            result.Count = products.Count;
+
+            result.Result = _mapper.Map<List<Model.Automobil>>(products);
+
+            return result;
+        }
     }
 }

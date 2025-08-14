@@ -31,7 +31,7 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
         {
             var list = await base.AllowedActions();
 
-            list.Add("Canceled");
+            list.Add("canceled");
 
             return list;
         }

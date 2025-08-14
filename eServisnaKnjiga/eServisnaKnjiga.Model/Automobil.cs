@@ -17,4 +17,7 @@ public partial class Automobil
 
     public string? BrojSasije { get; set; }
 
+    public virtual KlijentNoKorisnik? Klijent { get; set; }
+
+
 }

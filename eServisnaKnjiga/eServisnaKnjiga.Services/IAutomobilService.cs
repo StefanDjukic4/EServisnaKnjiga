@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services
 {
-    public interface IAutomobilService : IService<Model.Automobil,AutomobilSerchaObject>
+    public interface IAutomobilService : ICruedService<Model.Automobil, AutomobilSerchaObject, Model.Requests.AutomobiliInsertRequest, Model.Requests.AutomobiliUpdateRequest>
     {
-
+       Task<PageResult<Model.Automobil>> ClientCars(int id);
     }
 }

@@ -12,6 +12,7 @@ namespace eServisnaKnjiga.Services
         public MappingProfile() {
 
             CreateMap<Database.Paketi, Model.Paketi>();
+            CreateMap<Database.Paketi, Model.PaketiNoPicture>();
             CreateMap<Model.Requests.PaketiInsertRequest, Database.Paketi>();
             CreateMap<Model.Requests.PaketiUpdateRequest, Database.Paketi>();
             CreateMap<Database.Automobil, Model.Automobil>();
@@ -23,11 +24,22 @@ namespace eServisnaKnjiga.Services
             CreateMap<Model.Requests.NovostiInsertRequest, Database.Novosti>();
             CreateMap<Model.Requests.NovostiUpdateRequest, Database.Novosti>();
             CreateMap<Database.Rezervacije, Model.Rezervacije>();
+            CreateMap<Database.RezervacijaPaketi, Model.RezervacijaPaketi>();
             CreateMap<Model.Requests.RezervacijeInsertRequest, Database.Rezervacije>();
             CreateMap<Model.Requests.RezervacijeUpdateRequest, Database.Rezervacije>();
             CreateMap<Database.Korisnici, Model.Korisnici>();
             CreateMap<Model.Requests.KorisniciInsertRequest, Database.Korisnici>();
             CreateMap<Model.Requests.KorisniciUpdateRequest, Database.Korisnici>();
+            CreateMap<Database.Automobil, Model.Automobil>();
+            CreateMap<Model.Requests.AutomobiliInsertRequest, Database.Automobil>();
+            CreateMap<Model.Requests.AutomobiliUpdateRequest, Database.Automobil>();
+            CreateMap<Database.Majstori, Model.Majstori>();
+            CreateMap<Model.Requests.MajstoriInsertRequest, Database.Majstori>();
+            CreateMap<Model.Requests.MajstoriUpdateRequest, Database.Majstori>();
+            CreateMap<Database.RadniNalog, Model.RadinNalog>();
+            CreateMap<Model.Requests.RadniNalogInsertRequest, Database.RadniNalog>();
+            CreateMap<Model.Requests.RadniNalogUpdateRequest, Database.RadniNalog>();
+            CreateMap<Database.Klijent, Model.KlijentNoKorisnik>();
 
         }
     }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services
 {
-    public interface IKlijentService : ICruedService<Model.Klijent, BaseSearchObject, Model.Requests.KlijentInsertRequest, Model.Requests.KlijentUpdateRequest>
+    public interface IKlijentService : ICruedService<Model.Klijent, KlijentiSerchaObject, Model.Requests.KlijentInsertRequest, Model.Requests.KlijentUpdateRequest>
     {
         public Task<Model.Klijent> Login(string username, string password);
     }

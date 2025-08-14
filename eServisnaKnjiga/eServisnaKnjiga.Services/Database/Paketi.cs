@@ -17,7 +17,9 @@ public partial class Paketi
 
     public string? IntervalObavjesti { get; set; }
 
+    public string? Slika { get; set; }
+
     public virtual ICollection<Obavjesti> Obavjestis { get; set; } = new List<Obavjesti>();
 
-    public virtual ICollection<RezervacijaPaketi> RezervacijaPaketis { get; set; } = new List<RezervacijaPaketi>();
+    public virtual ICollection<RezervacijaPaketi> RezervacijaPaketi { get; set; } = new List<RezervacijaPaketi>();
 }

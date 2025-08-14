@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -11,9 +11,8 @@
     <PackageReference Include="EasyNetQ" Version="7.5.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="RabbitMQ.Client" Version="6.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="System.Text.Encodings.Web" Version="9.0.8" />
+    <PackageReference Include="Vonage" Version="8.2.0" />
     <ProjectReference Include="..\eServisnaKnjiga.Model\eServisnaKnjiga.Model.csproj" />
   </ItemGroup>
 

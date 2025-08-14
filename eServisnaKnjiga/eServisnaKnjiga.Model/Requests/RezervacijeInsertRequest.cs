@@ -17,5 +17,7 @@ namespace eServisnaKnjiga.Model.Requests
 
         public string? Status { get; set; }
 
+        public List<int>? packageIdList { get; set; }
+
     }
 }

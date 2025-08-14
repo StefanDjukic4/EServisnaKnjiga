@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace eServisnaKnjiga.Services
 {
-    public interface IKorisniciService : ICruedService<Model.Korisnici,BaseSearchObject,Model.Requests.KorisniciInsertRequest,Model.Requests.KorisniciUpdateRequest>
+    public interface IKorisniciService : ICruedService<Model.Korisnici, BaseSearchObject, Model.Requests.KorisniciInsertRequest,Model.Requests.KorisniciUpdateRequest>
     {
         
     }

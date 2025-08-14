@@ -1,6 +1,7 @@
 using eServisnaKnjiga.Model;
 using eServisnaKnjiga.Model.Requests;
 using eServisnaKnjiga.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eServisnaKnjiga.Controllers
@@ -17,12 +18,14 @@ namespace eServisnaKnjiga.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "SefServisa")]
         public virtual async Task<T> Insert ([FromBody]TInsert insert)
         {
             return await _Service.Insert (insert);
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "SefServisa")]
         public virtual async Task<T> Update(int id, [FromBody]TUpdate update)
         {
             return await _Service.Update (id, update);

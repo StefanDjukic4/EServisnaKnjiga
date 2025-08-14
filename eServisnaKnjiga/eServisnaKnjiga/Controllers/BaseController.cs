@@ -20,12 +20,14 @@ namespace eServisnaKnjiga.Controllers
         }
         
         [HttpGet()]
+        [Authorize(Roles = "SefServisa")]
         public async Task<PageResult<T>> Get([FromQuery] TSearch? search = null)
         {
             return await _Service.Get(search);
         }
 
-        [HttpGet("{id}")] 
+        [HttpGet("{id}")]
+        [Authorize(Roles = "SefServisa")]
         public async Task<T> GetById(int id)
         {
             return await _Service.GetById(id);
