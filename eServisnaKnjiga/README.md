@@ -67,7 +67,7 @@ flutter run -d windows --dart-define=BASE_URL_DESKTOP=http://localhost:7042/
 
 ### Running the Mobile App
 
-1. Navigate to the mobile app folder: ```eServisnaKnjiga\UI\eservisnaknjiga_mobile``.
+1. Navigate to the mobile app folder: ```eServisnaKnjiga\UI\eservisnaknjiga_mobile```.
 
 2. Install dependencies:
 
