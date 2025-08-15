@@ -351,12 +351,12 @@ public partial class EServisnaKnjigaContext : DbContext
             new Automobil { Id = 1, Marka = "Toyota", Model = "Corolla", GodinaProizvodnje = 2015, BrojSasije = "JTDBU4EE9B9123451", Registracija = "ZG123AB", KlijentId = 4 },
             new Automobil { Id = 2, Marka = "Ford", Model = "Focus", GodinaProizvodnje = 2018, BrojSasije = "1FAHP3F29CL123452", Registracija = "ST456CD", KlijentId = 2 },
             new Automobil { Id = 3, Marka = "BMW", Model = "320i", GodinaProizvodnje = 2017, BrojSasije = "WBA8E9G50GNU34563", Registracija = "RI789EF", KlijentId = 1 },
-            new Automobil { Id = 4, Marka = "Audi", Model = "A4", GodinaProizvodnje = 2019, BrojSasije = "WAUZZZ8K9DA123474", Registracija = "DU101GH", KlijentId = 4 },
+            new Automobil { Id = 4, Marka = "Audi", Model = "A4", GodinaProizvodnje = 2019, BrojSasije = "WAUZZZ8K9DA123474", Registracija = "DU101GH", KlijentId = 1 },
             new Automobil { Id = 5, Marka = "Mercedes", Model = "C200", GodinaProizvodnje = 2016, BrojSasije = "WDDGF8AB9EA123485", Registracija = "MA202IJ", KlijentId = 5 },
             new Automobil { Id = 6, Marka = "Volkswagen", Model = "Golf", GodinaProizvodnje = 2020, BrojSasije = "WVWHN7AN8EE123496", Registracija = "ZG303KL", KlijentId = 6 },
-            new Automobil { Id = 7, Marka = "Hyundai", Model = "i30", GodinaProizvodnje = 2014, BrojSasije = "KMHH35LE9FU123407", Registracija = "ST404MN", KlijentId = 7 },
+            new Automobil { Id = 7, Marka = "Hyundai", Model = "i30", GodinaProizvodnje = 2014, BrojSasije = "KMHH35LE9FU123407", Registracija = "ST404MN", KlijentId = 1 },
             new Automobil { Id = 8, Marka = "Kia", Model = "Ceed", GodinaProizvodnje = 2013, BrojSasije = "KNAGM4A71D5123418", Registracija = "RI505OP", KlijentId = 8 },
-            new Automobil { Id = 9, Marka = "Opel", Model = "Astra", GodinaProizvodnje = 2012, BrojSasije = "W0L0TGF69D6123499", Registracija = "DU606QR", KlijentId = 9 },
+            new Automobil { Id = 9, Marka = "Opel", Model = "Astra", GodinaProizvodnje = 2012, BrojSasije = "W0L0TGF69D6123499", Registracija = "DU606QR", KlijentId = 1 },
             new Automobil { Id = 10, Marka = "Renault", Model = "Clio", GodinaProizvodnje = 2011, BrojSasije = "VF1BB0H0D12345100", Registracija = "MA707ST", KlijentId = 10 }
         );
 
@@ -460,16 +460,16 @@ public partial class EServisnaKnjigaContext : DbContext
 
         //Obavjesti
         modelBuilder.Entity<Obavjesti>().HasData(
-            new Obavjesti { Id = 1, KorisnikId = 1, PaketId = 1, Datum = DateTime.Today.AddDays(0) },
-            new Obavjesti { Id = 2, KorisnikId = 2, PaketId = 2, Datum = DateTime.Today.AddDays(1) },
+            new Obavjesti { Id = 1, KorisnikId = 3, PaketId = 1, Datum = DateTime.Today.AddDays(0) },
+            new Obavjesti { Id = 2, KorisnikId = 3, PaketId = 2, Datum = DateTime.Today.AddDays(1) },
             new Obavjesti { Id = 3, KorisnikId = 3, PaketId = 3, Datum = DateTime.Today.AddDays(2) },
-            new Obavjesti { Id = 4, KorisnikId = 4, PaketId = 4, Datum = DateTime.Today.AddDays(-7) },
-            new Obavjesti { Id = 5, KorisnikId = 5, PaketId = 5, Datum = DateTime.Today.AddDays(-6) },
-            new Obavjesti { Id = 6, KorisnikId = 6, PaketId = 6, Datum = DateTime.Today.AddDays(-5) },
-            new Obavjesti { Id = 7, KorisnikId = 7, PaketId = 7, Datum = DateTime.Today.AddDays(-4) },
-            new Obavjesti { Id = 8, KorisnikId = 8, PaketId = 8, Datum = DateTime.Today.AddDays(-3) },
-            new Obavjesti { Id = 9, KorisnikId = 9, PaketId = 9, Datum = DateTime.Today.AddDays(-2) },
-            new Obavjesti { Id = 10, KorisnikId = 10, PaketId = 10, Datum = DateTime.Today.AddDays(-1) }
+            new Obavjesti { Id = 4, KorisnikId = 3, PaketId = 4, Datum = DateTime.Today.AddDays(-7) },
+            new Obavjesti { Id = 5, KorisnikId = 3, PaketId = 5, Datum = DateTime.Today.AddDays(-6) },
+            new Obavjesti { Id = 6, KorisnikId = 3, PaketId = 6, Datum = DateTime.Today.AddDays(-5) },
+            new Obavjesti { Id = 7, KorisnikId = 3, PaketId = 7, Datum = DateTime.Today.AddDays(-4) },
+            new Obavjesti { Id = 8, KorisnikId = 3, PaketId = 8, Datum = DateTime.Today.AddDays(-3) },
+            new Obavjesti { Id = 9, KorisnikId = 3, PaketId = 9, Datum = DateTime.Today.AddDays(-2) },
+            new Obavjesti { Id = 10, KorisnikId = 3, PaketId = 10, Datum = DateTime.Today.AddDays(-1) }
         );
 
     }
