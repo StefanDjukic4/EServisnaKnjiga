@@ -276,16 +276,16 @@ namespace eServisnaKnjiga.Services.Migrations
                 columns: new[] { "id", "datum_objave", "naslov", "tekst" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 8, 5, 0, 0, 0, 0, DateTimeKind.Local), "Novost 1", "Tekst novosti 1" },
-                    { 2, new DateTime(2025, 8, 6, 0, 0, 0, 0, DateTimeKind.Local), "Novost 2", "Tekst novosti 2" },
-                    { 3, new DateTime(2025, 8, 7, 0, 0, 0, 0, DateTimeKind.Local), "Novost 3", "Tekst novosti 3" },
-                    { 4, new DateTime(2025, 8, 8, 0, 0, 0, 0, DateTimeKind.Local), "Novost 4", "Tekst novosti 4" },
-                    { 5, new DateTime(2025, 8, 9, 0, 0, 0, 0, DateTimeKind.Local), "Novost 5", "Tekst novosti 5" },
-                    { 6, new DateTime(2025, 8, 10, 0, 0, 0, 0, DateTimeKind.Local), "Novost 6", "Tekst novosti 6" },
-                    { 7, new DateTime(2025, 8, 11, 0, 0, 0, 0, DateTimeKind.Local), "Novost 7", "Tekst novosti 7" },
-                    { 8, new DateTime(2025, 8, 12, 0, 0, 0, 0, DateTimeKind.Local), "Novost 8", "Tekst novosti 8" },
-                    { 9, new DateTime(2025, 8, 13, 0, 0, 0, 0, DateTimeKind.Local), "Novost 9", "Tekst novosti 9" },
-                    { 10, new DateTime(2025, 8, 14, 0, 0, 0, 0, DateTimeKind.Local), "Novost 10", "Tekst novosti 10" }
+                    { 1, new DateTime(2025, 8, 6, 0, 0, 0, 0, DateTimeKind.Local), "Novost 1", "Tekst novosti 1" },
+                    { 2, new DateTime(2025, 8, 7, 0, 0, 0, 0, DateTimeKind.Local), "Novost 2", "Tekst novosti 2" },
+                    { 3, new DateTime(2025, 8, 8, 0, 0, 0, 0, DateTimeKind.Local), "Novost 3", "Tekst novosti 3" },
+                    { 4, new DateTime(2025, 8, 9, 0, 0, 0, 0, DateTimeKind.Local), "Novost 4", "Tekst novosti 4" },
+                    { 5, new DateTime(2025, 8, 10, 0, 0, 0, 0, DateTimeKind.Local), "Novost 5", "Tekst novosti 5" },
+                    { 6, new DateTime(2025, 8, 11, 0, 0, 0, 0, DateTimeKind.Local), "Novost 6", "Tekst novosti 6" },
+                    { 7, new DateTime(2025, 8, 12, 0, 0, 0, 0, DateTimeKind.Local), "Novost 7", "Tekst novosti 7" },
+                    { 8, new DateTime(2025, 8, 13, 0, 0, 0, 0, DateTimeKind.Local), "Novost 8", "Tekst novosti 8" },
+                    { 9, new DateTime(2025, 8, 14, 0, 0, 0, 0, DateTimeKind.Local), "Novost 9", "Tekst novosti 9" },
+                    { 10, new DateTime(2025, 8, 15, 0, 0, 0, 0, DateTimeKind.Local), "Novost 10", "Tekst novosti 10" }
                 });
 
             migrationBuilder.InsertData(
@@ -353,16 +353,16 @@ namespace eServisnaKnjiga.Services.Migrations
                 columns: new[] { "id", "datum", "korisnik_id", "paket_id" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 8, 15, 0, 0, 0, 0, DateTimeKind.Local), 3, 1 },
-                    { 2, new DateTime(2025, 8, 16, 0, 0, 0, 0, DateTimeKind.Local), 3, 2 },
-                    { 3, new DateTime(2025, 8, 17, 0, 0, 0, 0, DateTimeKind.Local), 3, 3 },
-                    { 4, new DateTime(2025, 8, 8, 0, 0, 0, 0, DateTimeKind.Local), 3, 4 },
-                    { 5, new DateTime(2025, 8, 9, 0, 0, 0, 0, DateTimeKind.Local), 3, 5 },
-                    { 6, new DateTime(2025, 8, 10, 0, 0, 0, 0, DateTimeKind.Local), 3, 6 },
-                    { 7, new DateTime(2025, 8, 11, 0, 0, 0, 0, DateTimeKind.Local), 3, 7 },
-                    { 8, new DateTime(2025, 8, 12, 0, 0, 0, 0, DateTimeKind.Local), 3, 8 },
-                    { 9, new DateTime(2025, 8, 13, 0, 0, 0, 0, DateTimeKind.Local), 3, 9 },
-                    { 10, new DateTime(2025, 8, 14, 0, 0, 0, 0, DateTimeKind.Local), 3, 10 }
+                    { 1, new DateTime(2025, 8, 16, 0, 0, 0, 0, DateTimeKind.Local), 3, 1 },
+                    { 2, new DateTime(2025, 8, 17, 0, 0, 0, 0, DateTimeKind.Local), 3, 2 },
+                    { 3, new DateTime(2025, 8, 18, 0, 0, 0, 0, DateTimeKind.Local), 3, 3 },
+                    { 4, new DateTime(2025, 8, 9, 0, 0, 0, 0, DateTimeKind.Local), 3, 4 },
+                    { 5, new DateTime(2025, 8, 10, 0, 0, 0, 0, DateTimeKind.Local), 3, 5 },
+                    { 6, new DateTime(2025, 8, 11, 0, 0, 0, 0, DateTimeKind.Local), 3, 6 },
+                    { 7, new DateTime(2025, 8, 12, 0, 0, 0, 0, DateTimeKind.Local), 3, 7 },
+                    { 8, new DateTime(2025, 8, 13, 0, 0, 0, 0, DateTimeKind.Local), 3, 8 },
+                    { 9, new DateTime(2025, 8, 14, 0, 0, 0, 0, DateTimeKind.Local), 3, 9 },
+                    { 10, new DateTime(2025, 8, 15, 0, 0, 0, 0, DateTimeKind.Local), 3, 10 }
                 });
 
             migrationBuilder.InsertData(
@@ -370,16 +370,16 @@ namespace eServisnaKnjiga.Services.Migrations
                 columns: new[] { "id", "automobil_id", "datum", "opis", "status" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2025, 8, 17, 13, 0, 0, 0, DateTimeKind.Local), "Zamjena ulja i filtera", "created" },
-                    { 2, 2, new DateTime(2025, 8, 18, 13, 0, 0, 0, DateTimeKind.Local), "Popravka kočnica", "created" },
-                    { 3, 3, new DateTime(2025, 8, 19, 13, 0, 0, 0, DateTimeKind.Local), "Balansiranje guma", "created" },
-                    { 4, 4, new DateTime(2025, 8, 19, 11, 0, 0, 0, DateTimeKind.Local), "Zamjena svjećica", "accepted" },
-                    { 5, 5, new DateTime(2025, 8, 16, 13, 0, 0, 0, DateTimeKind.Local), "Veliki servis", "accepted" },
-                    { 6, 6, new DateTime(2025, 8, 15, 13, 0, 0, 0, DateTimeKind.Local), "Mali servis", "canceled" },
-                    { 7, 7, new DateTime(2025, 8, 14, 13, 0, 0, 0, DateTimeKind.Local), "Popravka elektronike", "paid_cash" },
-                    { 8, 8, new DateTime(2025, 8, 13, 13, 0, 0, 0, DateTimeKind.Local), "Punjenje klime", "paid_cash" },
-                    { 9, 9, new DateTime(2025, 8, 12, 13, 0, 0, 0, DateTimeKind.Local), "Dijagnostika motora", "pending_payment" },
-                    { 10, 10, new DateTime(2025, 8, 13, 10, 0, 0, 0, DateTimeKind.Local), "Popravka svjetala", "paid_mpay" }
+                    { 1, 1, new DateTime(2025, 8, 18, 13, 0, 0, 0, DateTimeKind.Local), "Zamjena ulja i filtera", "created" },
+                    { 2, 2, new DateTime(2025, 8, 19, 13, 0, 0, 0, DateTimeKind.Local), "Popravka kočnica", "created" },
+                    { 3, 3, new DateTime(2025, 8, 20, 13, 0, 0, 0, DateTimeKind.Local), "Balansiranje guma", "created" },
+                    { 4, 4, new DateTime(2025, 8, 20, 11, 0, 0, 0, DateTimeKind.Local), "Zamjena svjećica", "accepted" },
+                    { 5, 5, new DateTime(2025, 8, 17, 13, 0, 0, 0, DateTimeKind.Local), "Veliki servis", "accepted" },
+                    { 6, 6, new DateTime(2025, 8, 16, 13, 0, 0, 0, DateTimeKind.Local), "Mali servis", "canceled" },
+                    { 7, 7, new DateTime(2025, 8, 15, 13, 0, 0, 0, DateTimeKind.Local), "Popravka elektronike", "paid_cash" },
+                    { 8, 8, new DateTime(2025, 8, 14, 13, 0, 0, 0, DateTimeKind.Local), "Punjenje klime", "paid_cash" },
+                    { 9, 9, new DateTime(2025, 8, 13, 13, 0, 0, 0, DateTimeKind.Local), "Dijagnostika motora", "pending_payment" },
+                    { 10, 10, new DateTime(2025, 8, 14, 10, 0, 0, 0, DateTimeKind.Local), "Popravka svjetala", "paid_mpay" }
                 });
 
             migrationBuilder.InsertData(
@@ -387,16 +387,16 @@ namespace eServisnaKnjiga.Services.Migrations
                 columns: new[] { "id", "cijena", "datum", "majstor_id", "opis", "rezervacija_id" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2025, 7, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, "Popravka kočnica", 1 },
-                    { 2, null, new DateTime(2025, 7, 18, 0, 0, 0, 0, DateTimeKind.Local), 2, "Zamena ulja", 2 },
-                    { 3, null, new DateTime(2025, 7, 20, 0, 0, 0, 0, DateTimeKind.Local), 3, "Servis klima uređaja", 3 },
-                    { 4, null, new DateTime(2025, 7, 22, 0, 0, 0, 0, DateTimeKind.Local), 4, "Popravka svetala", 4 },
-                    { 5, null, new DateTime(2025, 7, 24, 0, 0, 0, 0, DateTimeKind.Local), 5, "Zamena filtera", 5 },
-                    { 6, null, new DateTime(2025, 7, 26, 0, 0, 0, 0, DateTimeKind.Local), 6, "Popravka auspuh", 6 },
-                    { 7, null, new DateTime(2025, 7, 28, 0, 0, 0, 0, DateTimeKind.Local), 7, "Zamena guma", 7 },
-                    { 8, null, new DateTime(2025, 7, 30, 0, 0, 0, 0, DateTimeKind.Local), 8, "Podešavanje motora", 8 },
-                    { 9, null, new DateTime(2025, 8, 1, 0, 0, 0, 0, DateTimeKind.Local), 9, "Popravka kočnica", 9 },
-                    { 10, null, new DateTime(2025, 8, 3, 0, 0, 0, 0, DateTimeKind.Local), 10, "Zamena ulja", 10 }
+                    { 1, null, new DateTime(2025, 7, 17, 0, 0, 0, 0, DateTimeKind.Local), 1, "Popravka kočnica", 1 },
+                    { 2, null, new DateTime(2025, 7, 19, 0, 0, 0, 0, DateTimeKind.Local), 2, "Zamena ulja", 2 },
+                    { 3, null, new DateTime(2025, 7, 21, 0, 0, 0, 0, DateTimeKind.Local), 3, "Servis klima uređaja", 3 },
+                    { 4, null, new DateTime(2025, 7, 23, 0, 0, 0, 0, DateTimeKind.Local), 4, "Popravka svetala", 4 },
+                    { 5, null, new DateTime(2025, 7, 25, 0, 0, 0, 0, DateTimeKind.Local), 5, "Zamena filtera", 5 },
+                    { 6, null, new DateTime(2025, 7, 27, 0, 0, 0, 0, DateTimeKind.Local), 6, "Popravka auspuh", 6 },
+                    { 7, null, new DateTime(2025, 7, 29, 0, 0, 0, 0, DateTimeKind.Local), 7, "Zamena guma", 7 },
+                    { 8, null, new DateTime(2025, 7, 31, 0, 0, 0, 0, DateTimeKind.Local), 8, "Podešavanje motora", 8 },
+                    { 9, null, new DateTime(2025, 8, 2, 0, 0, 0, 0, DateTimeKind.Local), 9, "Popravka kočnica", 9 },
+                    { 10, null, new DateTime(2025, 8, 4, 0, 0, 0, 0, DateTimeKind.Local), 10, "Zamena ulja", 10 }
                 });
 
             migrationBuilder.InsertData(

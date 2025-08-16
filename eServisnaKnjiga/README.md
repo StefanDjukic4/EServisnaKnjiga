@@ -33,7 +33,7 @@ git clone https://github.com/StefanDjukic4/EServisnaKnjiga.git
 
 The following environment variables are required:
 
-- **Backend:** ```SQL_USER```, ```SQL_PASSWORD```, ```SQL_PASSWORD_DOCKER```, ```SQL_HOST```, ```SQL_DB_NAME```, ```ASPNETCORE_ENVIRONMENT```, ```RABBITMQ_HOST```, ```RABBITMQ_PORT```, ```RABBITMQ_USERNAME```, ```RABBITMQ_PASSWORD```, ```VONAGE_API_KEY```, ```VONAGE_API_SECRET```, ```STRIPE_SECRET_KEY``` and ```STRIPE_PUBLISHABLE_KEY```
+- **Backend:** ```SQL_USER```, ```SQL_PASSWORD```, ```SQL_HOST```, ```SQL_DB_NAME```, ```ASPNETCORE_ENVIRONMENT```, ```RABBITMQ_HOST```, ```RABBITMQ_PORT```, ```RABBITMQ_USERNAME```, ```RABBITMQ_PASSWORD```, ```VONAGE_API_KEY```, ```VONAGE_API_SECRET```, ```STRIPE_SECRET_KEY``` and ```STRIPE_PUBLISHABLE_KEY```
 - **Frontend (desktop app):** ```BASE_URL_DESKTO```
 - **Frontend (mobile app):** ```BASE_URL_MOBILE```
 
