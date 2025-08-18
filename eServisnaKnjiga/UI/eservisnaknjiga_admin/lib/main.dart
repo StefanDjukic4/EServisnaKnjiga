@@ -6,7 +6,7 @@ import 'package:eservisnaknjiga_admin/providers/package_provider.dart';
 import 'package:eservisnaknjiga_admin/providers/repairman_provider.dart';
 import 'package:eservisnaknjiga_admin/providers/reservation_provider.dart';
 import 'package:eservisnaknjiga_admin/providers/work_order_provider.dart';
-import 'package:eservisnaknjiga_admin/screens/car_list_screen.dart';
+import 'package:eservisnaknjiga_admin/screens/client_list_screen.dart';
 import 'package:eservisnaknjiga_admin/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -118,7 +118,7 @@ class LoginPage extends StatelessWidget {
                           await _carProvider.get();
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (context) => const CarListScreen()),
+                                builder: (context) => const ClientListScreen()),
                           );
                         } on Exception catch (e) {
                           showDialog(

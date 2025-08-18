@@ -418,16 +418,16 @@ public partial class EServisnaKnjigaContext : DbContext
 
         // RadniNalog
         modelBuilder.Entity<RadniNalog>().HasData(
-            new RadniNalog { Id = 1, RezervacijaId = 1, MajstorId = 1, Datum = DateTime.Today.AddDays(-30), Opis = "Popravka kočnica" },
-            new RadniNalog { Id = 2, RezervacijaId = 2, MajstorId = 2, Datum = DateTime.Today.AddDays(-28), Opis = "Zamena ulja" },
-            new RadniNalog { Id = 3, RezervacijaId = 3, MajstorId = 3, Datum = DateTime.Today.AddDays(-26), Opis = "Servis klima uređaja" },
-            new RadniNalog { Id = 4, RezervacijaId = 4, MajstorId = 4, Datum = DateTime.Today.AddDays(-24), Opis = "Popravka svetala" },
-            new RadniNalog { Id = 5, RezervacijaId = 5, MajstorId = 5, Datum = DateTime.Today.AddDays(-22), Opis = "Zamena filtera" },
-            new RadniNalog { Id = 6, RezervacijaId = 6, MajstorId = 6, Datum = DateTime.Today.AddDays(-20), Opis = "Popravka auspuh" },
-            new RadniNalog { Id = 7, RezervacijaId = 7, MajstorId = 7, Datum = DateTime.Today.AddDays(-18), Opis = "Zamena guma" },
-            new RadniNalog { Id = 8, RezervacijaId = 8, MajstorId = 8, Datum = DateTime.Today.AddDays(-16), Opis = "Podešavanje motora" },
-            new RadniNalog { Id = 9, RezervacijaId = 9, MajstorId = 9, Datum = DateTime.Today.AddDays(-14), Opis = "Popravka kočnica" },
-            new RadniNalog { Id = 10, RezervacijaId = 10, MajstorId = 10, Datum = DateTime.Today.AddDays(-12), Opis = "Zamena ulja" }
+            new RadniNalog { Id = 1, RezervacijaId = 1, MajstorId = 1, Datum = DateTime.Today.AddDays(-30), Opis = "Popravka kočnica", Cijena = 248.50m},
+            new RadniNalog { Id = 2, RezervacijaId = 2, MajstorId = 2, Datum = DateTime.Today.AddDays(-28), Opis = "Zamena ulja", Cijena = 488.00m },
+            new RadniNalog { Id = 3, RezervacijaId = 3, MajstorId = 3, Datum = DateTime.Today.AddDays(-26), Opis = "Servis klima uređaja", Cijena = 69.50m },
+            new RadniNalog { Id = 4, RezervacijaId = 4, MajstorId = 4, Datum = DateTime.Today.AddDays(-24), Opis = "Popravka svetala", Cijena = 167.50m },
+            new RadniNalog { Id = 5, RezervacijaId = 5, MajstorId = 5, Datum = DateTime.Today.AddDays(-22), Opis = "Zamena filtera", Cijena = 1391.50m },
+            new RadniNalog { Id = 6, RezervacijaId = 6, MajstorId = 6, Datum = DateTime.Today.AddDays(-20), Opis = "Popravka auspuh", Cijena = 645.50m },
+            new RadniNalog { Id = 7, RezervacijaId = 7, MajstorId = 7, Datum = DateTime.Today.AddDays(-18), Opis = "Zamena guma", Cijena = 845.50m },
+            new RadniNalog { Id = 8, RezervacijaId = 8, MajstorId = 8, Datum = DateTime.Today.AddDays(-16), Opis = "Podešavanje motora", Cijena = 534.00m },
+            new RadniNalog { Id = 9, RezervacijaId = 9, MajstorId = 9, Datum = DateTime.Today.AddDays(-14), Opis = "Popravka kočnica", Cijena = 123.50m },
+            new RadniNalog { Id = 10, RezervacijaId = 10, MajstorId = 10, Datum = DateTime.Today.AddDays(-12), Opis = "Zamena ulja", Cijena = 764.50m }
         );
 
         // Rezervacije

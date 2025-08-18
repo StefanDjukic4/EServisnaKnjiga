@@ -27,7 +27,7 @@ namespace eServisnaKnjiga.Services
 
         public override IQueryable<Database.Rezervacije> AddInclude(IQueryable<Database.Rezervacije> query, BaseSearchObject? search = null)
         {
-            query = query.Include("Automobil").Include("RezervacijaPaketi.Paket");
+            query = query.Include("Automobil.Klijent").Include("RezervacijaPaketi.Paket");
             return base.AddInclude(query, search);
         }
 
@@ -42,6 +42,7 @@ namespace eServisnaKnjiga.Services
         {
             var entity = await _context.Rezervacijes
                 .Include(r => r.Automobil)
+                    .ThenInclude(rp => rp.Klijent)
                 .Include(r => r.RezervacijaPaketi)
                     .ThenInclude(rp => rp.Paket)
                 .FirstOrDefaultAsync(r => r.Id == id);

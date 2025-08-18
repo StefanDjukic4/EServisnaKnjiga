@@ -78,7 +78,7 @@ flutter pub get
 3. Run the application:
 
 ```bash
-flutter run --dart-define=BASE_URL_MOBILE=https://10.0.2.2:7042/
+flutter run --dart-define=BASE_URL_MOBILE=http://10.0.2.2:7042/
 ```
 
 ### Credentials For Testing
