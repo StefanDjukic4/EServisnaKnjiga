@@ -567,70 +567,70 @@ namespace eServisnaKnjiga.Services.Migrations
                         new
                         {
                             Id = 1,
-                            DatumObjave = new DateTime(2025, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            DatumObjave = new DateTime(2025, 8, 9, 0, 0, 0, 0, DateTimeKind.Local),
                             Naslov = "Novost 1",
                             Tekst = "Tekst novosti 1"
                         },
                         new
                         {
                             Id = 2,
-                            DatumObjave = new DateTime(2025, 8, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            DatumObjave = new DateTime(2025, 8, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             Naslov = "Novost 2",
                             Tekst = "Tekst novosti 2"
                         },
                         new
                         {
                             Id = 3,
-                            DatumObjave = new DateTime(2025, 8, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            DatumObjave = new DateTime(2025, 8, 11, 0, 0, 0, 0, DateTimeKind.Local),
                             Naslov = "Novost 3",
                             Tekst = "Tekst novosti 3"
                         },
                         new
                         {
                             Id = 4,
-                            DatumObjave = new DateTime(2025, 8, 11, 0, 0, 0, 0, DateTimeKind.Local),
+                            DatumObjave = new DateTime(2025, 8, 12, 0, 0, 0, 0, DateTimeKind.Local),
                             Naslov = "Novost 4",
                             Tekst = "Tekst novosti 4"
                         },
                         new
                         {
                             Id = 5,
-                            DatumObjave = new DateTime(2025, 8, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            DatumObjave = new DateTime(2025, 8, 13, 0, 0, 0, 0, DateTimeKind.Local),
                             Naslov = "Novost 5",
                             Tekst = "Tekst novosti 5"
                         },
                         new
                         {
                             Id = 6,
-                            DatumObjave = new DateTime(2025, 8, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            DatumObjave = new DateTime(2025, 8, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             Naslov = "Novost 6",
                             Tekst = "Tekst novosti 6"
                         },
                         new
                         {
                             Id = 7,
-                            DatumObjave = new DateTime(2025, 8, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            DatumObjave = new DateTime(2025, 8, 15, 0, 0, 0, 0, DateTimeKind.Local),
                             Naslov = "Novost 7",
                             Tekst = "Tekst novosti 7"
                         },
                         new
                         {
                             Id = 8,
-                            DatumObjave = new DateTime(2025, 8, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            DatumObjave = new DateTime(2025, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             Naslov = "Novost 8",
                             Tekst = "Tekst novosti 8"
                         },
                         new
                         {
                             Id = 9,
-                            DatumObjave = new DateTime(2025, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            DatumObjave = new DateTime(2025, 8, 17, 0, 0, 0, 0, DateTimeKind.Local),
                             Naslov = "Novost 9",
                             Tekst = "Tekst novosti 9"
                         },
                         new
                         {
                             Id = 10,
-                            DatumObjave = new DateTime(2025, 8, 17, 0, 0, 0, 0, DateTimeKind.Local),
+                            DatumObjave = new DateTime(2025, 8, 18, 0, 0, 0, 0, DateTimeKind.Local),
                             Naslov = "Novost 10",
                             Tekst = "Tekst novosti 10"
                         });
@@ -670,70 +670,70 @@ namespace eServisnaKnjiga.Services.Migrations
                         new
                         {
                             Id = 1,
-                            Datum = new DateTime(2025, 8, 18, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 19, 0, 0, 0, 0, DateTimeKind.Local),
                             KorisnikId = 3,
                             PaketId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Datum = new DateTime(2025, 8, 19, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 20, 0, 0, 0, 0, DateTimeKind.Local),
                             KorisnikId = 3,
                             PaketId = 2
                         },
                         new
                         {
                             Id = 3,
-                            Datum = new DateTime(2025, 8, 20, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 21, 0, 0, 0, 0, DateTimeKind.Local),
                             KorisnikId = 3,
                             PaketId = 3
                         },
                         new
                         {
                             Id = 4,
-                            Datum = new DateTime(2025, 8, 11, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 12, 0, 0, 0, 0, DateTimeKind.Local),
                             KorisnikId = 3,
                             PaketId = 4
                         },
                         new
                         {
                             Id = 5,
-                            Datum = new DateTime(2025, 8, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 13, 0, 0, 0, 0, DateTimeKind.Local),
                             KorisnikId = 3,
                             PaketId = 5
                         },
                         new
                         {
                             Id = 6,
-                            Datum = new DateTime(2025, 8, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             KorisnikId = 3,
                             PaketId = 6
                         },
                         new
                         {
                             Id = 7,
-                            Datum = new DateTime(2025, 8, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 15, 0, 0, 0, 0, DateTimeKind.Local),
                             KorisnikId = 3,
                             PaketId = 7
                         },
                         new
                         {
                             Id = 8,
-                            Datum = new DateTime(2025, 8, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             KorisnikId = 3,
                             PaketId = 8
                         },
                         new
                         {
                             Id = 9,
-                            Datum = new DateTime(2025, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 17, 0, 0, 0, 0, DateTimeKind.Local),
                             KorisnikId = 3,
                             PaketId = 9
                         },
                         new
                         {
                             Id = 10,
-                            Datum = new DateTime(2025, 8, 17, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 18, 0, 0, 0, 0, DateTimeKind.Local),
                             KorisnikId = 3,
                             PaketId = 10
                         });
@@ -922,7 +922,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 1,
                             Cijena = 248.50m,
-                            Datum = new DateTime(2025, 7, 19, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 7, 20, 0, 0, 0, 0, DateTimeKind.Local),
                             MajstorId = 1,
                             Opis = "Popravka kočnica",
                             RezervacijaId = 1
@@ -931,7 +931,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 2,
                             Cijena = 488.00m,
-                            Datum = new DateTime(2025, 7, 21, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 7, 22, 0, 0, 0, 0, DateTimeKind.Local),
                             MajstorId = 2,
                             Opis = "Zamena ulja",
                             RezervacijaId = 2
@@ -940,7 +940,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 3,
                             Cijena = 69.50m,
-                            Datum = new DateTime(2025, 7, 23, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 7, 24, 0, 0, 0, 0, DateTimeKind.Local),
                             MajstorId = 3,
                             Opis = "Servis klima uređaja",
                             RezervacijaId = 3
@@ -949,7 +949,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 4,
                             Cijena = 167.50m,
-                            Datum = new DateTime(2025, 7, 25, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 7, 26, 0, 0, 0, 0, DateTimeKind.Local),
                             MajstorId = 4,
                             Opis = "Popravka svetala",
                             RezervacijaId = 4
@@ -958,7 +958,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 5,
                             Cijena = 1391.50m,
-                            Datum = new DateTime(2025, 7, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 7, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             MajstorId = 5,
                             Opis = "Zamena filtera",
                             RezervacijaId = 5
@@ -967,7 +967,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 6,
                             Cijena = 645.50m,
-                            Datum = new DateTime(2025, 7, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 7, 30, 0, 0, 0, 0, DateTimeKind.Local),
                             MajstorId = 6,
                             Opis = "Popravka auspuh",
                             RezervacijaId = 6
@@ -976,7 +976,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 7,
                             Cijena = 845.50m,
-                            Datum = new DateTime(2025, 7, 31, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             MajstorId = 7,
                             Opis = "Zamena guma",
                             RezervacijaId = 7
@@ -985,7 +985,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 8,
                             Cijena = 534.00m,
-                            Datum = new DateTime(2025, 8, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             MajstorId = 8,
                             Opis = "Podešavanje motora",
                             RezervacijaId = 8
@@ -994,7 +994,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 9,
                             Cijena = 123.50m,
-                            Datum = new DateTime(2025, 8, 4, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 5, 0, 0, 0, 0, DateTimeKind.Local),
                             MajstorId = 9,
                             Opis = "Popravka kočnica",
                             RezervacijaId = 9
@@ -1003,7 +1003,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 10,
                             Cijena = 764.50m,
-                            Datum = new DateTime(2025, 8, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 7, 0, 0, 0, 0, DateTimeKind.Local),
                             MajstorId = 10,
                             Opis = "Zamena ulja",
                             RezervacijaId = 10
@@ -1047,54 +1047,138 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 2,
                             PaketId = 2,
-                            RezervacijaId = 2
+                            RezervacijaId = 1
                         },
                         new
                         {
                             Id = 3,
+                            PaketId = 2,
+                            RezervacijaId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            PaketId = 3,
+                            RezervacijaId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            PaketId = 4,
+                            RezervacijaId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
                             PaketId = 3,
                             RezervacijaId = 3
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 7,
+                            PaketId = 5,
+                            RezervacijaId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
                             PaketId = 4,
                             RezervacijaId = 4
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 9,
+                            PaketId = 6,
+                            RezervacijaId = 4
+                        },
+                        new
+                        {
+                            Id = 10,
+                            PaketId = 7,
+                            RezervacijaId = 4
+                        },
+                        new
+                        {
+                            Id = 11,
                             PaketId = 5,
                             RezervacijaId = 5
                         },
                         new
                         {
-                            Id = 6,
+                            Id = 12,
+                            PaketId = 6,
+                            RezervacijaId = 5
+                        },
+                        new
+                        {
+                            Id = 13,
+                            PaketId = 7,
+                            RezervacijaId = 5
+                        },
+                        new
+                        {
+                            Id = 14,
+                            PaketId = 8,
+                            RezervacijaId = 5
+                        },
+                        new
+                        {
+                            Id = 15,
                             PaketId = 6,
                             RezervacijaId = 6
                         },
                         new
                         {
-                            Id = 7,
+                            Id = 16,
                             PaketId = 7,
                             RezervacijaId = 7
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 17,
+                            PaketId = 8,
+                            RezervacijaId = 7
+                        },
+                        new
+                        {
+                            Id = 18,
                             PaketId = 8,
                             RezervacijaId = 8
                         },
                         new
                         {
-                            Id = 9,
+                            Id = 19,
+                            PaketId = 9,
+                            RezervacijaId = 8
+                        },
+                        new
+                        {
+                            Id = 20,
                             PaketId = 9,
                             RezervacijaId = 9
                         },
                         new
                         {
-                            Id = 10,
+                            Id = 21,
                             PaketId = 10,
+                            RezervacijaId = 9
+                        },
+                        new
+                        {
+                            Id = 22,
+                            PaketId = 1,
+                            RezervacijaId = 9
+                        },
+                        new
+                        {
+                            Id = 23,
+                            PaketId = 10,
+                            RezervacijaId = 10
+                        },
+                        new
+                        {
+                            Id = 24,
+                            PaketId = 2,
                             RezervacijaId = 10
                         });
                 });
@@ -1140,7 +1224,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 1,
                             AutomobilId = 1,
-                            Datum = new DateTime(2025, 8, 20, 13, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 21, 13, 0, 0, 0, DateTimeKind.Local),
                             Opis = "Zamjena ulja i filtera",
                             Status = "created"
                         },
@@ -1148,7 +1232,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 2,
                             AutomobilId = 2,
-                            Datum = new DateTime(2025, 8, 21, 13, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 22, 13, 0, 0, 0, DateTimeKind.Local),
                             Opis = "Popravka kočnica",
                             Status = "created"
                         },
@@ -1156,7 +1240,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 3,
                             AutomobilId = 3,
-                            Datum = new DateTime(2025, 8, 22, 13, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 23, 13, 0, 0, 0, DateTimeKind.Local),
                             Opis = "Balansiranje guma",
                             Status = "created"
                         },
@@ -1164,7 +1248,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 4,
                             AutomobilId = 4,
-                            Datum = new DateTime(2025, 8, 22, 11, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 23, 11, 0, 0, 0, DateTimeKind.Local),
                             Opis = "Zamjena svjećica",
                             Status = "accepted"
                         },
@@ -1172,7 +1256,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 5,
                             AutomobilId = 5,
-                            Datum = new DateTime(2025, 8, 19, 13, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 20, 13, 0, 0, 0, DateTimeKind.Local),
                             Opis = "Veliki servis",
                             Status = "accepted"
                         },
@@ -1180,7 +1264,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 6,
                             AutomobilId = 6,
-                            Datum = new DateTime(2025, 8, 18, 13, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 19, 13, 0, 0, 0, DateTimeKind.Local),
                             Opis = "Mali servis",
                             Status = "canceled"
                         },
@@ -1188,7 +1272,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 7,
                             AutomobilId = 7,
-                            Datum = new DateTime(2025, 8, 17, 13, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 18, 13, 0, 0, 0, DateTimeKind.Local),
                             Opis = "Popravka elektronike",
                             Status = "paid_cash"
                         },
@@ -1196,7 +1280,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 8,
                             AutomobilId = 8,
-                            Datum = new DateTime(2025, 8, 16, 13, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 17, 13, 0, 0, 0, DateTimeKind.Local),
                             Opis = "Punjenje klime",
                             Status = "paid_cash"
                         },
@@ -1204,7 +1288,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 9,
                             AutomobilId = 9,
-                            Datum = new DateTime(2025, 8, 15, 13, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 16, 13, 0, 0, 0, DateTimeKind.Local),
                             Opis = "Dijagnostika motora",
                             Status = "pending_payment"
                         },
@@ -1212,7 +1296,7 @@ namespace eServisnaKnjiga.Services.Migrations
                         {
                             Id = 10,
                             AutomobilId = 10,
-                            Datum = new DateTime(2025, 8, 16, 10, 0, 0, 0, DateTimeKind.Local),
+                            Datum = new DateTime(2025, 8, 17, 10, 0, 0, 0, DateTimeKind.Local),
                             Opis = "Popravka svjetala",
                             Status = "paid_mpay"
                         });

@@ -107,7 +107,7 @@ namespace eServisnaKnjiga.Services
     {
         [KeyType(count: 3000)]
         public uint ProductID { get; set; }
-
+        
         [KeyType(count: 3000)]
         public uint CoPurchaseProductID { get; set; }
 

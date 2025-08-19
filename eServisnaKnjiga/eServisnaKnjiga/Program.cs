@@ -66,14 +66,17 @@ builder.Services.AddSwaggerGen(c =>
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<EServisnaKnjigaContext>(options =>
     options.UseSqlServer(connectionString));
+builder.Services.AddHangfire(config =>
+    config.UseSqlServerStorage(connectionString, new Hangfire.SqlServer.SqlServerStorageOptions
+    {
+        PrepareSchemaIfNecessary = true // <-- automatski pravi Hangfire tabele
+    }));
+builder.Services.AddHangfireServer();
 
 builder.Services.AddAutoMapper(typeof(IPaketiService));
 builder.Services.AddAuthentication("BasicAuthentication")
     .AddScheme<AuthenticationSchemeOptions, BasicAuthentificationHandler>("BasicAuthentication", null);
 
-builder.Services.AddHangfire(config =>
-    config.UseSqlServerStorage(connectionString)); 
-builder.Services.AddHangfireServer();
 builder.Services.AddScoped<ISlanjePorukaJob, SlanjePorukaJob>();
 builder.Services.AddScoped<ITrenirajRecommenderJob, TrenirajRecommenderJob>();
 
@@ -93,6 +96,12 @@ else
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<EServisnaKnjigaContext>();
+    dataContext.Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -109,12 +118,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.UseHangfireDashboard();
-
-using (var scope = app.Services.CreateScope())
-{
-   var dataContext = scope.ServiceProvider.GetRequiredService<EServisnaKnjigaContext>();
-   dataContext.Database.Migrate();
-}
 
 RecurringJob.AddOrUpdate<ITrenirajRecommenderJob>(
     "treniranje-recommender-modela",

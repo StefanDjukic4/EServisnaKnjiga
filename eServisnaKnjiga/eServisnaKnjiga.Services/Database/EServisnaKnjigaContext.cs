@@ -447,16 +447,31 @@ public partial class EServisnaKnjigaContext : DbContext
         // RezervacijaPaketi
         modelBuilder.Entity<RezervacijaPaketi>().HasData(
             new RezervacijaPaketi { Id = 1, RezervacijaId = 1, PaketId = 1 },
-            new RezervacijaPaketi { Id = 2, RezervacijaId = 2, PaketId = 2 },
-            new RezervacijaPaketi { Id = 3, RezervacijaId = 3, PaketId = 3 },
-            new RezervacijaPaketi { Id = 4, RezervacijaId = 4, PaketId = 4 },
-            new RezervacijaPaketi { Id = 5, RezervacijaId = 5, PaketId = 5 },
-            new RezervacijaPaketi { Id = 6, RezervacijaId = 6, PaketId = 6 },
-            new RezervacijaPaketi { Id = 7, RezervacijaId = 7, PaketId = 7 },
-            new RezervacijaPaketi { Id = 8, RezervacijaId = 8, PaketId = 8 },
-            new RezervacijaPaketi { Id = 9, RezervacijaId = 9, PaketId = 9 },
-            new RezervacijaPaketi { Id = 10, RezervacijaId = 10, PaketId = 10 }
+            new RezervacijaPaketi { Id = 2, RezervacijaId = 1, PaketId = 2 },
+            new RezervacijaPaketi { Id = 3, RezervacijaId = 2, PaketId = 2 },
+            new RezervacijaPaketi { Id = 4, RezervacijaId = 2, PaketId = 3 },
+            new RezervacijaPaketi { Id = 5, RezervacijaId = 2, PaketId = 4 },
+            new RezervacijaPaketi { Id = 6, RezervacijaId = 3, PaketId = 3 },
+            new RezervacijaPaketi { Id = 7, RezervacijaId = 3, PaketId = 5 },
+            new RezervacijaPaketi { Id = 8, RezervacijaId = 4, PaketId = 4 },
+            new RezervacijaPaketi { Id = 9, RezervacijaId = 4, PaketId = 6 },
+            new RezervacijaPaketi { Id = 10, RezervacijaId = 4, PaketId = 7 },
+            new RezervacijaPaketi { Id = 11, RezervacijaId = 5, PaketId = 5 },
+            new RezervacijaPaketi { Id = 12, RezervacijaId = 5, PaketId = 6 },
+            new RezervacijaPaketi { Id = 13, RezervacijaId = 5, PaketId = 7 },
+            new RezervacijaPaketi { Id = 14, RezervacijaId = 5, PaketId = 8 },
+            new RezervacijaPaketi { Id = 15, RezervacijaId = 6, PaketId = 6 },
+            new RezervacijaPaketi { Id = 16, RezervacijaId = 7, PaketId = 7 },
+            new RezervacijaPaketi { Id = 17, RezervacijaId = 7, PaketId = 8 },
+            new RezervacijaPaketi { Id = 18, RezervacijaId = 8, PaketId = 8 },
+            new RezervacijaPaketi { Id = 19, RezervacijaId = 8, PaketId = 9 },
+            new RezervacijaPaketi { Id = 20, RezervacijaId = 9, PaketId = 9 },
+            new RezervacijaPaketi { Id = 21, RezervacijaId = 9, PaketId = 10 },
+            new RezervacijaPaketi { Id = 22, RezervacijaId = 9, PaketId = 1 },
+            new RezervacijaPaketi { Id = 23, RezervacijaId = 10, PaketId = 10 },
+            new RezervacijaPaketi { Id = 24, RezervacijaId = 10, PaketId = 2 }
         );
+
 
         //Obavjesti
         modelBuilder.Entity<Obavjesti>().HasData(
