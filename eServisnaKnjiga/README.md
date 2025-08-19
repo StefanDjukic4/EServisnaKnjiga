@@ -12,6 +12,25 @@
 - **Backend**: ASP.NET Core Web API with Entity Framework, with the API, SQL database, and RabbitMQ containerized using Docker.
 - **Frontend**: Flutter (for both desktop and mobile applications).
 
+## Recommendation System
+
+The platform includes an **item-to-item collaborative filtering recommendation system** for service packages. It analyzes past reservations to determine which packages are frequently purchased together and generates personalized recommendations for clients.
+
+- The recommendation model is **automatically trained when the application starts**, ensuring that the system has an up-to-date model from the very beginning.
+- The model is **refreshed daily at 6 AM** using a background job, keeping recommendations current as new reservation data is added.
+
+This system leverages **Microsoft ML.NET's Matrix Factorization** to learn patterns from historical reservation data and provide meaningful suggestions to clients.
+
+## SMS Notification System
+
+The platform integrates **Vonage API** to send SMS notifications to clients.  
+
+- **Account Notifications:** Clients receive an SMS when a new account is created, providing them with essential login information.  
+- **Appointment Updates:** Clients are notified via SMS when a service appointment is **approved, declined, or rescheduled**, ensuring they are always informed of changes.  
+- **Service Reminders:** A background job runs **daily at 12 PM** to automatically send reminders to clients whose service appointments or subscriptions have expired, helping them stay up-to-date with their vehicle maintenance.  
+
+This ensures timely communication with clients and improves engagement through automated SMS notifications.
+
 ## Getting Started
 
 Follow the steps below to set up and run the project.
