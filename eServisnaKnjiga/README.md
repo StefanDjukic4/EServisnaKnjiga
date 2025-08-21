@@ -70,6 +70,15 @@ docker-compose up --build
 
 ### Running the Desktop App
 
+#### Running prebuilt desktop app
+- Navigate to repository root
+- Extract the provided `fit-build-2025-08-21a.zip` file
+- Password: **fit**
+- Navigate to `Release\`
+- Start `eservisnaknjiga_admin.exe`
+
+#### Build desktop app
+
 1. Navigate to the appropriate folder: ```eServisnaKnjiga\UI\eservisnaknjiga_admin```
 
 2. Install the necessary dependencies:
@@ -85,6 +94,16 @@ flutter run -d windows --dart-define=BASE_URL_DESKTOP=http://localhost:7042/
 ```
 
 ### Running the Mobile App
+
+#### Running prebuilt mobile app
+- Start Android emulator
+- Navigate to repository root
+- Extract the provided `fit-build-2025-08-21a.zip` file
+- Password: **fit**
+- Navigate to `flutter-apk\`
+- Drag and Drop `app-debug.apk` to emulator window and start the app manually
+
+#### Build mobile app
 
 1. Navigate to the mobile app folder: ```eServisnaKnjiga\UI\eservisnaknjiga_mobile```.
 
