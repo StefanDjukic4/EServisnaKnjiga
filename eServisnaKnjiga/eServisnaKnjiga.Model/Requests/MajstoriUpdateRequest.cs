@@ -13,5 +13,7 @@ namespace eServisnaKnjiga.Model.Requests
 
         public string? Prezime { get; set; }
 
+        public DateTime? DatumRodjenja { get; set; }
+
     }
 }

@@ -312,7 +312,7 @@ class _RepairmanListScreenState extends State<RepairmanListScreen> {
       if (repairman != null && repairman.datumRodjenja != null) {
         dateController.text =
             repairman.datumRodjenja.toString().substring(0, 10);
-        isDateFieldEnabled = false;
+        isDateFieldEnabled = true;
       } else {
         isDateFieldEnabled = true;
         dateController.text = "";

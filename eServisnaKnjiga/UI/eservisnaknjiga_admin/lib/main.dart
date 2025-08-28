@@ -12,9 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
-  //WidgetsFlutterBinding.ensureInitialized();
-  //await windowManager.ensureInitialized();
-  //await dotenv.load(fileName: ".env");
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => CarProvider()),
@@ -32,7 +29,7 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return const MyMaterialApp();
@@ -62,10 +59,15 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Authorization.username = '';
+    Authorization.password = '';
     _carProvider = context.read<CarProvider>();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Login")),
+      appBar: AppBar(
+        title: const Text("Login"),
+        automaticallyImplyLeading: false, // nema back strelice
+      ),
       body: Center(
         child: Container(
           constraints: const BoxConstraints(maxWidth: 400),
@@ -116,7 +118,8 @@ class LoginPage extends StatelessWidget {
 
                         try {
                           await _carProvider.get();
-                          Navigator.of(context).push(
+
+                          Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
                                 builder: (context) => const ClientListScreen()),
                           );

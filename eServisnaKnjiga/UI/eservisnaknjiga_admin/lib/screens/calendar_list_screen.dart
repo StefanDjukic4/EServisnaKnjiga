@@ -1,5 +1,6 @@
 import 'package:eservisnaknjiga_admin/models/search_result.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:provider/provider.dart';
 import 'package:eservisnaknjiga_admin/providers/reservation_provider.dart';
@@ -18,6 +19,7 @@ class CalendarListScreen extends StatefulWidget {
 }
 
 class _CalendarListScreenState extends State<CalendarListScreen> {
+  final DateFormat dateFormatter = DateFormat("dd.MM.yyyy. HH:mm", "sr");
   final ReservationProvider _reservationProvider = ReservationProvider();
   SearchResult<Reservation>? result;
   final List<Meeting> _meetings = <Meeting>[];
@@ -58,7 +60,7 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
                       final Meeting meeting = details.appointments.first;
                       return Tooltip(
                         message: "Status: ${meeting.status}\n"
-                            "Početak: ${meeting.from}\n"
+                            "Početak: ${dateFormatter.format(meeting.from)}\n"
                             "${meeting.eventName}",
                         textStyle: const TextStyle(color: Colors.white),
                         decoration: BoxDecoration(
