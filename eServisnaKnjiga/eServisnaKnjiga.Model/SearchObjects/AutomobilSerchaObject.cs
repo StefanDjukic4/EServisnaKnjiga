@@ -12,5 +12,6 @@ namespace eServisnaKnjiga.Model.SearchObjects
         public string? Model { get; set; }
         public string? Registracija { get; set; }
         public string? BrojSasije { get; set; }
+        public int? ClientId { get; set; }
     }
 }

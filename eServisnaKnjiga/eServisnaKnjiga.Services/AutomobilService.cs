@@ -38,6 +38,11 @@ namespace eServisnaKnjiga.Services
                 query = query.Where(x => x.Model.StartsWith(search.Model));
             }
 
+            if (search?.ClientId != null)
+            {
+                query = query.Where(x => x.KlijentId.Equals(search.ClientId));
+            }
+
             return base.AddFilter(query, search);
         }
 

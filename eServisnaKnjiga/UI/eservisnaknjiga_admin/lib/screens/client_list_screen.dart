@@ -1,8 +1,8 @@
-import 'package:eservisnaknjiga_admin/models/car.dart';
 import 'package:eservisnaknjiga_admin/models/client.dart';
 import 'package:eservisnaknjiga_admin/models/search_result.dart';
-import 'package:eservisnaknjiga_admin/providers/car_provider.dart';
 import 'package:eservisnaknjiga_admin/providers/client_provider.dart';
+import 'package:eservisnaknjiga_admin/providers/car_provider.dart';
+import 'package:eservisnaknjiga_admin/screens/car_list_screen.dart';
 import 'package:eservisnaknjiga_admin/widgets/master_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -22,7 +22,6 @@ class _ClientListScreenState extends State<ClientListScreen> {
   Map<String, dynamic> _initialValue = {};
   late ClientProvider _clientProvider;
   late CarProvider _carProvider;
-  late TextEditingController dateController = TextEditingController();
   late TextEditingController _imeController;
   late TextEditingController _prezimeController;
   bool isNameSurnameFieldEnabled = true;
@@ -125,24 +124,13 @@ class _ClientListScreenState extends State<ClientListScreen> {
           child: DataTable(
             dataRowMaxHeight: 120,
             columns: const [
-              DataColumn(
-                  label: Text('Ime',
-                      style: TextStyle(fontStyle: FontStyle.italic))),
-              DataColumn(
-                  label: Text('Prezime',
-                      style: TextStyle(fontStyle: FontStyle.italic))),
-              DataColumn(
-                  label: Text('Telefon',
-                      style: TextStyle(fontStyle: FontStyle.italic))),
-              DataColumn(
-                  label: Text('Adresa',
-                      style: TextStyle(fontStyle: FontStyle.italic))),
-              DataColumn(
-                  label: Text('E-Mail',
-                      style: TextStyle(fontStyle: FontStyle.italic))),
-              DataColumn(
-                  label: Text('Izmjeni',
-                      style: TextStyle(fontStyle: FontStyle.italic))),
+              DataColumn(label: Text('Ime')),
+              DataColumn(label: Text('Prezime')),
+              DataColumn(label: Text('Telefon')),
+              DataColumn(label: Text('Adresa')),
+              DataColumn(label: Text('E-Mail')),
+              DataColumn(label: Text('Izmjeni')),
+              DataColumn(label: Text('Automobili')),
             ],
             rows: result?.result
                     .map(
@@ -163,6 +151,19 @@ class _ClientListScreenState extends State<ClientListScreen> {
                               ),
                               onPressed: () {
                                 _updateText(client: e);
+                              },
+                            ),
+                          ),
+                          DataCell(
+                            ElevatedButton(
+                              child: const Text('Automobili'),
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        CarListScreen(client: e),
+                                  ),
+                                );
                               },
                             ),
                           ),
@@ -216,7 +217,7 @@ class _ClientListScreenState extends State<ClientListScreen> {
                               errorText: 'Ime mora imati barem 2 slova'),
                         ]),
                       ),
-                      const Padding(padding: EdgeInsets.all(10.0)),
+                      const SizedBox(height: 10),
                       FormBuilderTextField(
                         name: 'prezime',
                         enabled: isNameSurnameFieldEnabled,
@@ -228,7 +229,7 @@ class _ClientListScreenState extends State<ClientListScreen> {
                               errorText: 'Prezime mora imati barem 2 slova'),
                         ]),
                       ),
-                      const Padding(padding: EdgeInsets.all(10.0)),
+                      const SizedBox(height: 10),
                       FormBuilderTextField(
                         name: 'telefon',
                         decoration: const InputDecoration(labelText: 'Telefon'),
@@ -242,16 +243,14 @@ class _ClientListScreenState extends State<ClientListScreen> {
                           return null;
                         },
                       ),
-                      const Padding(padding: EdgeInsets.all(10.0)),
+                      const SizedBox(height: 10),
                       FormBuilderTextField(
                         name: 'adresa',
                         decoration: const InputDecoration(labelText: 'Adresa'),
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                              errorText: 'Adresa je obavezna'),
-                        ]),
+                        validator: FormBuilderValidators.required(
+                            errorText: 'Adresa je obavezna'),
                       ),
-                      const Padding(padding: EdgeInsets.all(10.0)),
+                      const SizedBox(height: 10),
                       FormBuilderTextField(
                         name: 'email',
                         decoration: const InputDecoration(labelText: 'Email'),
@@ -262,7 +261,7 @@ class _ClientListScreenState extends State<ClientListScreen> {
                               errorText: 'Unesite ispravan email'),
                         ]),
                       ),
-                      const Padding(padding: EdgeInsets.all(10.0)),
+                      const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () async {
                           if (_formKey.currentState?.saveAndValidate() ??
@@ -272,16 +271,16 @@ class _ClientListScreenState extends State<ClientListScreen> {
                                 await _clientProvider
                                     .insert(_formKey.currentState?.value);
                               } else {
-                                await _clientProvider.update(
-                                    client!.id!, _formKey.currentState?.value);
+                                await _clientProvider.update(client!.id ?? 1,
+                                    _formKey.currentState?.value);
                               }
                               client = null;
                               Navigator.pop(context);
-                            } on Exception catch (e) {
+                            } catch (e) {
                               showDialog(
                                 context: context,
                                 builder: (BuildContext context) => AlertDialog(
-                                  title: const Text("Error"),
+                                  title: const Text("Greška"),
                                   content: Text(e.toString()),
                                   actions: [
                                     TextButton(
@@ -309,25 +308,15 @@ class _ClientListScreenState extends State<ClientListScreen> {
     );
   }
 
-  Future<void> _updateText({client}) async => setState(() {
+  Future<void> _updateText({Client? client}) async => setState(() {
         _initialValue = {
-          if (client != null) 'ime': client.ime ?? '' else 'ime': '',
-          if (client != null)
-            'prezime': client.prezime ?? ''
-          else
-            'prezime': '',
-          if (client != null) 'adresa': client.adresa ?? '' else 'adresa': '',
-          if (client != null) 'email': client.email ?? '' else 'email': '',
-          if (client != null)
-            'telefon': client.telefon ?? ''
-          else
-            'telefon': '',
+          'ime': client?.ime ?? '',
+          'prezime': client?.prezime ?? '',
+          'telefon': client?.telefon ?? '',
+          'adresa': client?.adresa ?? '',
+          'email': client?.email ?? '',
         };
-        if (client != null && client.ime != null) {
-          isNameSurnameFieldEnabled = false;
-        } else {
-          isNameSurnameFieldEnabled = true;
-        }
+        isNameSurnameFieldEnabled = client?.ime == null;
         _openPopup(context, client);
       });
 }
