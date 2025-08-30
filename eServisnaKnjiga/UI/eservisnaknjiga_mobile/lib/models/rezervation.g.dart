@@ -13,11 +13,19 @@ Rezervation _$RezervationFromJson(Map<String, dynamic> json) => Rezervation(
       (json['packageIdList'] as List<dynamic>?)
           ?.map((e) => (e as num).toInt())
           .toList(),
+      json['automobil'] == null
+          ? null
+          : Car.fromJson(json['automobil'] as Map<String, dynamic>),
+      (json['id'] as num?)?.toInt(),
+      json['status'] as String?,
     );
 
 Map<String, dynamic> _$RezervationToJson(Rezervation instance) =>
     <String, dynamic>{
+      'id': instance.id,
+      'status': instance.status,
       'automobilId': instance.automobilId,
+      'automobil': instance.automobil,
       'datum': instance.datum?.toIso8601String(),
       'opis': instance.opis,
       'packageIdList': instance.packageIdList,

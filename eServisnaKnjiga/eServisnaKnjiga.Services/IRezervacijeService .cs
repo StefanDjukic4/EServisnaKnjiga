@@ -14,7 +14,11 @@ namespace eServisnaKnjiga.Services
     {
         Task<Rezervacije> Accepted(int id);
 
+        Task<Rezervacije> ClientAccepted(int id);
+
         Task<Rezervacije> Canceled(int id);
+
+        Task<Rezervacije> ClientCanceled(int id);
 
         Task<Rezervacije> Modify(int id, RezervacijeUpdateRequest update);
 
@@ -25,5 +29,7 @@ namespace eServisnaKnjiga.Services
         Task<String> ClientInitialzPayment(RadniNalogKlijentPlacanjeRequest request);
 
         Task<Rezervacije> ClientSuccessfulPayment(int id);
+
+        Task<List<Rezervacije>> GetByClientId(int id);
     }
 }

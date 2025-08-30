@@ -19,7 +19,7 @@ class CalendarListScreen extends StatefulWidget {
 }
 
 class _CalendarListScreenState extends State<CalendarListScreen> {
-  final DateFormat dateFormatter = DateFormat("dd.MM.yyyy. HH:mm", "sr");
+  late DateFormat dateFormatter;
   final ReservationProvider _reservationProvider = ReservationProvider();
   SearchResult<Reservation>? result;
   final List<Meeting> _meetings = <Meeting>[];
@@ -28,6 +28,7 @@ class _CalendarListScreenState extends State<CalendarListScreen> {
   @override
   void initState() {
     super.initState();
+    dateFormatter = DateFormat("dd.MM.yyyy. HH:mm", "sr");
     _loadMeetings();
   }
 

@@ -3,10 +3,12 @@ import 'package:eservisnaknjiga_mobile/providers/news_provider.dart';
 import 'package:eservisnaknjiga_mobile/providers/packages_provider.dart';
 import 'package:eservisnaknjiga_mobile/providers/rezervation_provider.dart';
 import 'package:eservisnaknjiga_mobile/providers/work_order_provider.dart';
+import 'package:eservisnaknjiga_mobile/screens/history_reservation_list.dart';
 import 'package:eservisnaknjiga_mobile/screens/news_list_screen.dart';
 import 'package:eservisnaknjiga_mobile/utils/util.dart';
 import 'package:flutter_stripe/flutter_stripe.dart' as stripe;
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 
 Future<void> main() async {
@@ -14,6 +16,7 @@ Future<void> main() async {
   stripe.Stripe.publishableKey =
       "pk_test_51Ms4eeA0iQOCJUgu9h1EF8l7nqbrnxXHRaAN6hAcXcABassvJBdqxyQuPCWFqntcthwsPxCEQ2kvOzez60At6VWG00D4C3MgXP";
   await stripe.Stripe.instance.applySettings();
+  await initializeDateFormatting('sr', null);
   runApp(
     MultiProvider(
       providers: [

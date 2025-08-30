@@ -103,12 +103,8 @@ class _ReservationListScreenState extends State<ReservationListScreen> {
     if (selectedCarId != null &&
         selectedServices.isNotEmpty &&
         selectedDateTime != null) {
-      Rezervation rezervation = Rezervation(
-        selectedCarId,
-        selectedDateTime,
-        opis,
-        selectedPackagesId,
-      );
+      Rezervation rezervation = Rezervation(selectedCarId, selectedDateTime,
+          opis, selectedPackagesId, null, null, null);
       _rezervationProvider.insert(rezervation);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Rezervacija uspješno kreirana!")),

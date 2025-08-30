@@ -53,4 +53,44 @@ class RezervationProvider extends BaseProvider<Rezervation> {
       throw Exception("Greška prilikom spasavanj uspjesnog plaćanja.");
     }
   }
+
+  Future<List<Rezervation>> getReservationListForClient(
+    int id,
+  ) async {
+    var baseUrl =
+        const String.fromEnvironment('BASE_URL_MOBILE', defaultValue: "");
+    var uri = Uri.parse("${baseUrl}Rezervacije/Klijent?id=$id");
+    var headers = createHeaders();
+
+    var response = await http!.get(uri, headers: headers);
+
+    if (isValidResponse(response)) {
+      var data = jsonDecode(response.body) as List;
+      return data.map((json) => Rezervation.fromJson(json)).toList();
+    } else {
+      throw Exception("Greška prilikom učitavanja rezervacija klijenta.");
+    }
+  }
+
+  Future<Rezervation> setState(int id, String state, [dynamic request]) async {
+    var baseUrl =
+        const String.fromEnvironment('BASE_URL_MOBILE', defaultValue: "");
+
+    var url = "${baseUrl}Rezervacije/$id/client$state";
+    var uri = Uri.parse(url);
+    var headres = createHeaders();
+
+    var jsonRequest = jsonEncode(request);
+
+    var response = await http!.put(uri, headers: headres, body: jsonRequest);
+
+    if (isValidResponse(response)) {
+      print("response: ${response.statusCode}, ${response.body}");
+      var data = jsonDecode(response.body);
+
+      return fromJson(data);
+    } else {
+      throw new Exception("Unknown error");
+    }
+  }
 }

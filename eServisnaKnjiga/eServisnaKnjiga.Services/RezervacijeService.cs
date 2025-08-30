@@ -50,6 +50,19 @@ namespace eServisnaKnjiga.Services
             return _mapper.Map <Model.Rezervacije> (entity);
         }
 
+        public async Task<List<Model.Rezervacije>> GetByClientId(int id)
+        {
+            var entity = await _context.Rezervacijes
+                .Include(r => r.Automobil)
+                    .ThenInclude(rp => rp.Klijent)
+                .Include(r => r.RezervacijaPaketi)
+                    .ThenInclude(rp => rp.Paket)
+                .Where(r => r.Automobil.KlijentId == id)
+                .ToListAsync();
+
+            return _mapper.Map<List<Model.Rezervacije>>(entity);
+        }
+
         public override async Task<Model.Rezervacije> Update(int id, RezervacijeUpdateRequest update)
         {
             var entity = await _context.Rezervacijes.FindAsync(id);
@@ -68,6 +81,15 @@ namespace eServisnaKnjiga.Services
             return await state.Accepted(id);
         }
 
+        public async Task<Model.Rezervacije> ClientAccepted(int id)
+        {
+            var entity = await _context.Rezervacijes.FindAsync(id);
+
+            var state = _baseState.CreateState(entity.Status);
+
+            return await state.ClientAccepted(id);
+        }
+
         public async Task<Model.Rezervacije> Modify(int id, RezervacijeUpdateRequest update)
         {
             var entity = await _context.Rezervacijes.FindAsync(id);
@@ -78,6 +100,15 @@ namespace eServisnaKnjiga.Services
         }
 
         public async Task<Model.Rezervacije> Canceled(int id)
+        {
+            var entity = await _context.Rezervacijes.FindAsync(id);
+
+            var state = _baseState.CreateState(entity.Status);
+
+            return await state.Canceled(id);
+        }
+
+        public async Task<Model.Rezervacije> ClientCanceled(int id)
         {
             var entity = await _context.Rezervacijes.FindAsync(id);
 

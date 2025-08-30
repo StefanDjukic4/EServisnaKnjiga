@@ -1,4 +1,5 @@
 import 'package:eservisnaknjiga_mobile/main.dart';
+import 'package:eservisnaknjiga_mobile/screens/history_reservation_list.dart';
 import 'package:eservisnaknjiga_mobile/screens/news_list_screen.dart';
 import 'package:eservisnaknjiga_mobile/screens/packages_list_screen.dart';
 import 'package:eservisnaknjiga_mobile/screens/payment_list_screen%20copy.dart';
@@ -51,6 +52,14 @@ class _MasterScreenWidgetState extends State<MasterScreenWidget> {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const ReservationListScreen()));
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.history_edu_outlined),
+              title: const Text("Istorija rezervacija"),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const HistoryReservationList()));
               },
             ),
             ListTile(

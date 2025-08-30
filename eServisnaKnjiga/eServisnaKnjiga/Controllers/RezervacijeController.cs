@@ -20,12 +20,28 @@ namespace eServisnaKnjiga.Controllers
         {
             return await (_Service as IRezervacijeService).Accepted(id);
         }
+
+        [HttpPut("{id}/clientAccepted")]
+        [Authorize(Roles = "Klijent")]
+        public virtual async Task<Rezervacije> ClientAccepted(int id)
+        {
+            return await (_Service as IRezervacijeService).ClientAccepted(id);
+        }
+
         [HttpPut("{id}/canceled")]
         [Authorize(Roles = "SefServisa")]
         public virtual async Task<Rezervacije> Canceled(int id)
         {
             return await (_Service as IRezervacijeService).Canceled(id);
         }
+
+        [HttpPut("{id}/clientCanceled")]
+        [Authorize(Roles = "Klijent")]
+        public virtual async Task<Rezervacije> ClientCanceled(int id)
+        {
+            return await (_Service as IRezervacijeService).ClientCanceled(id);
+        }
+
         [HttpPut("{id}/modify")]
         [Authorize(Roles = "SefServisa")]
 
@@ -33,6 +49,7 @@ namespace eServisnaKnjiga.Controllers
         {
             return await (_Service as IRezervacijeService).Modify(id,update);
         }
+
         [HttpGet("{id}/allowedActions")]
         [Authorize(Roles = "SefServisa")]
         public virtual async Task<List<string>> AllowedActions(int id)
@@ -45,6 +62,13 @@ namespace eServisnaKnjiga.Controllers
         public virtual Task<Rezervacije> ClientRezervation(RezervacijeInsertRequest insert)
         {
             return (_Service as IRezervacijeService).ClientRezervation(insert);
+        }
+
+        [Authorize(Roles = "Klijent")]
+        [HttpGet("Klijent")]
+        public virtual Task<List<Rezervacije>> ClientRezervation(int id)
+        {
+            return (_Service as IRezervacijeService).GetByClientId(id);
         }
 
         [Authorize(Roles = "Klijent")]

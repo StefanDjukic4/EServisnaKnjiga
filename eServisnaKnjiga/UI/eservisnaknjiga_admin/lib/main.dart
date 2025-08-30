@@ -10,8 +10,10 @@ import 'package:eservisnaknjiga_admin/screens/client_list_screen.dart';
 import 'package:eservisnaknjiga_admin/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 Future<void> main() async {
+  await initializeDateFormatting('sr', null);
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => CarProvider()),

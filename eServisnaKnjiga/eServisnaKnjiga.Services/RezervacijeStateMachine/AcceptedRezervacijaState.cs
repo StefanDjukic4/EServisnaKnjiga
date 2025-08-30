@@ -27,6 +27,19 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
             return _mapper.Map<Model.Rezervacije>(entity);
         }
 
+        public override async Task<Rezervacije> ClientCanceled(int id)
+        {
+            var set = _context.Set<Database.Rezervacije>();
+
+            var entity = await set.FindAsync(id);
+
+            entity.Status = "canceled";
+
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<Model.Rezervacije>(entity);
+        }
+
         public override async Task<List<string>> AllowedActions()
         {
             var list = await base.AllowedActions();

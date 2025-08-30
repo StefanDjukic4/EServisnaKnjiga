@@ -37,11 +37,19 @@ namespace eServisnaKnjiga.Services.RezervacijeStateMachine
         {
             throw new Exception("Izmjena statusa nije dozvoljena");
         }
+        public virtual Task<Model.Rezervacije> ClientAccepted(int id)
+        {
+            throw new Exception("Izmjena statusa nije dozvoljena");
+        }
         public virtual Task<Model.Rezervacije> Modify(int id, RezervacijeUpdateRequest request)
         {
             throw new Exception("Izmjena statusa nije dozvoljena");
         }
         public virtual Task<Model.Rezervacije> Canceled(int id)
+        {
+            throw new Exception("Izmjena statusa nije dozvoljena");
+        }
+        public virtual Task<Model.Rezervacije> ClientCanceled(int id)
         {
             throw new Exception("Izmjena statusa nije dozvoljena");
         }
