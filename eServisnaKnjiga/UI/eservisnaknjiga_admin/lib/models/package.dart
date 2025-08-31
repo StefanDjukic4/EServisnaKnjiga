@@ -11,9 +11,10 @@ class Package {
   double? minimalnaCijena;
   double? maksimalnaCijena;
   String? slika;
+  bool? isDeleted;
 
   Package(this.id, this.naziv, this.opis, this.intervalObavjesti,
-      this.minimalnaCijena, this.maksimalnaCijena, this.slika);
+      this.minimalnaCijena, this.maksimalnaCijena, this.slika, this.isDeleted);
 
   factory Package.fromJson(Map<String, dynamic> json) =>
       _$PackageFromJson(json);

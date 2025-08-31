@@ -12,4 +12,6 @@ public partial class Novosti
     public string? Tekst { get; set; }
 
     public DateTime? DatumObjave { get; set; }
+
+    public string? Slika { get; set; }
 }

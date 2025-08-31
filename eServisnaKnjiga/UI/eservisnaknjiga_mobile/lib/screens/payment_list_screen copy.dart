@@ -18,7 +18,9 @@ class _PaymentListScreenState extends State<PaymentListScreen> {
   late WorkOrderProvider _workOrderProvider;
   late RezervationProvider _rezervationProvider;
   SearchResult<WorkOrder>? result;
-  bool _isLoading = false;
+
+  // Map po rezervationId koja prati loading state
+  Map<int, bool> _isLoadingMap = {};
 
   @override
   void didChangeDependencies() {
@@ -56,7 +58,7 @@ class _PaymentListScreenState extends State<PaymentListScreen> {
 
     if (confirmed != true) return;
 
-    setState(() => _isLoading = true);
+    setState(() => _isLoadingMap[rezervationId] = true);
 
     try {
       final response = await _rezervationProvider.initialzPayment(
@@ -96,7 +98,7 @@ class _PaymentListScreenState extends State<PaymentListScreen> {
         SnackBar(content: Text("Greška pri plaćanju: $e")),
       );
     } finally {
-      setState(() => _isLoading = false);
+      setState(() => _isLoadingMap[rezervationId] = false);
     }
   }
 
@@ -134,6 +136,7 @@ class _PaymentListScreenState extends State<PaymentListScreen> {
       itemBuilder: (context, index) {
         var paymentItem = paymentList[index];
         var paketi = paymentItem.rezervacija?.rezervacijaPaketi ?? [];
+        var rezId = paymentItem.rezervacija!.id!;
 
         return Card(
           margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
@@ -214,13 +217,13 @@ class _PaymentListScreenState extends State<PaymentListScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: _isLoading
+                    onPressed: _isLoadingMap[rezId] == true
                         ? null
                         : () => _submitPayment(
-                              paymentItem.rezervacija!.id!,
+                              rezId,
                               paymentItem.cijena ?? 0,
                             ),
-                    icon: _isLoading
+                    icon: _isLoadingMap[rezId] == true
                         ? const SizedBox(
                             height: 16,
                             width: 16,

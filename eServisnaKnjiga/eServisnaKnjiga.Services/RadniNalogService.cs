@@ -129,6 +129,29 @@ namespace eServisnaKnjiga.Services
             return _mapper.Map<Model.RadinNalog>(entity);
         }
 
+        public async Task<PageResult<Model.RadinNalog>> ClientCarServiceList(int id)
+        {
+            PageResult<Model.RadinNalog> result = new PageResult<Model.RadinNalog>();
+
+            var validStatuses = new[] { "paid_cash", "paid_mpay", "pending_payment" };
+
+            var products = await _context.RadniNalogs
+                .Include("Majstor")
+                .Include("Rezervacija.Automobil.Klijent")
+                .Include("Rezervacija.RezervacijaPaketi.Paket")
+                .Where(x => x.Rezervacija != null &&
+                            x.Rezervacija.Automobil != null &&
+                            x.Rezervacija.Automobil.Id == id &&
+                            validStatuses.Contains(x.Rezervacija.Status))
+                .ToListAsync();
+
+            result.Count = products.Count;
+
+            result.Result = _mapper.Map<List<Model.RadinNalog>>(products);
+
+            return result;
+        }
+
         public async Task<PageResult<Model.RadinNalog>> ClientPayment(int id)
         {
             PageResult<Model.RadinNalog> result = new PageResult<Model.RadinNalog>();

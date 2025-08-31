@@ -25,6 +25,14 @@ namespace eServisnaKnjiga.Controllers
 
 
         [Authorize(Roles = "Klijent")]
+        [HttpGet("Klijent/CarServiceList/{id}")]
+        public virtual Task<PageResult<Model.RadinNalog>> ClientCarServiceList(int id)
+        {
+            return (_Service as IRadniNalogService).ClientCarServiceList(id);
+        }
+
+
+        [Authorize(Roles = "Klijent")]
         [HttpPut("Klijent/Payment")]
         public virtual Task<String> PostClientPayment(RadniNalogKlijentPlacanjeRequest request)
         {

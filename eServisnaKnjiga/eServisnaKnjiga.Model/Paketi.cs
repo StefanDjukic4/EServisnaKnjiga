@@ -19,4 +19,6 @@ public partial class Paketi
 
     public string? Slika { get; set; }
 
+    public bool IsDeleted { get; set; } = false;
+
 }

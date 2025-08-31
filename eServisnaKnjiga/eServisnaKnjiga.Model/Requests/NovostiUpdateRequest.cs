@@ -13,5 +13,7 @@ namespace eServisnaKnjiga.Model.Requests
 
         public string? Tekst { get; set; }
 
+        public string? Slika { get; set; }
+
     }
 }

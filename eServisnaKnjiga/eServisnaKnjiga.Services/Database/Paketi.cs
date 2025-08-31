@@ -19,6 +19,8 @@ public partial class Paketi
 
     public string? Slika { get; set; }
 
+    public bool IsDeleted { get; set; } = false;
+
     public virtual ICollection<Obavjesti> Obavjestis { get; set; } = new List<Obavjesti>();
 
     public virtual ICollection<RezervacijaPaketi> RezervacijaPaketi { get; set; } = new List<RezervacijaPaketi>();

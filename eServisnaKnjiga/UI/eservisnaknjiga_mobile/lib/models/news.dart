@@ -7,8 +7,10 @@ class News {
   int? id;
   String? naslov;
   String? tekst;
+  DateTime? datumObjave;
+  String? slika;
 
-  News(this.id, this.naslov, this.tekst);
+  News(this.id, this.naslov, this.tekst, this.datumObjave, this.slika);
 
   factory News.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);
 

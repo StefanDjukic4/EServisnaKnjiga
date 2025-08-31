@@ -33,10 +33,12 @@ class _PackageListScreenState extends State<PackageListScreen> {
   bool isDateFieldEnabled = true;
   SearchResult<Package>? result;
 
+  File? _image;
+  String? _base64Image;
+
   @override
   void initState() {
     super.initState();
-
     _nazivController = TextEditingController();
     _opisController = TextEditingController();
     _maxController = TextEditingController();
@@ -51,13 +53,11 @@ class _PackageListScreenState extends State<PackageListScreen> {
     _minController.dispose();
     _maxController.dispose();
     _intervalController.dispose();
-
     super.dispose();
   }
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
     super.didChangeDependencies();
     _packageProvider = context.read<PackageProvider>();
   }
@@ -82,19 +82,13 @@ class _PackageListScreenState extends State<PackageListScreen> {
             decoration: const InputDecoration(labelText: "Naziv"),
             controller: _nazivController,
           )),
-          const SizedBox(
-            height: 8,
-            width: 10,
-          ),
+          const SizedBox(height: 8, width: 10),
           Expanded(
               child: TextField(
             decoration: const InputDecoration(labelText: "Opis"),
             controller: _opisController,
           )),
-          const SizedBox(
-            height: 8,
-            width: 10,
-          ),
+          const SizedBox(height: 8, width: 10),
           ElevatedButton(
               onPressed: () async {
                 var data = await _packageProvider.get(filter: {
@@ -104,7 +98,6 @@ class _PackageListScreenState extends State<PackageListScreen> {
                 setState(() {
                   result = data;
                 });
-                //print("data: ${data.result[0].id}");
               },
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
@@ -114,14 +107,10 @@ class _PackageListScreenState extends State<PackageListScreen> {
                   Icon(Icons.search_outlined),
                 ],
               )),
-          const SizedBox(
-            height: 8,
-            width: 10,
-          ),
+          const SizedBox(height: 8, width: 10),
           ElevatedButton(
               onPressed: () async {
                 _updateText();
-                //print("data: ${data.result[0].id}");
               },
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
@@ -131,10 +120,6 @@ class _PackageListScreenState extends State<PackageListScreen> {
                   Icon(Icons.add),
                 ],
               )),
-          const SizedBox(
-            height: 8,
-            width: 10,
-          )
         ],
       ),
     );
@@ -150,61 +135,36 @@ class _PackageListScreenState extends State<PackageListScreen> {
                     dataRowMaxHeight: 120,
                     columns: const [
                       DataColumn(
-                          label: Expanded(
-                              child: Text(
-                        'Naziv',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                      ))),
+                          label: Text('Naziv',
+                              style: TextStyle(fontStyle: FontStyle.italic))),
                       DataColumn(
-                          label: Expanded(
-                              child: Text(
-                        'Opis',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                      ))),
+                          label: Text('Opis',
+                              style: TextStyle(fontStyle: FontStyle.italic))),
                       DataColumn(
-                          label: Expanded(
-                              child: Text(
-                        'Raspon cijene',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                      ))),
+                          label: Text('Raspon cijene',
+                              style: TextStyle(fontStyle: FontStyle.italic))),
                       DataColumn(
-                          label: Expanded(
-                              child: Text(
-                        'Interval',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                      ))),
+                          label: Text('Interval',
+                              style: TextStyle(fontStyle: FontStyle.italic))),
                       DataColumn(
-                          label: Expanded(
-                              child: Text(
-                        'Slika',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                      ))),
+                          label: Text('Slika',
+                              style: TextStyle(fontStyle: FontStyle.italic))),
                       DataColumn(
-                          label: Expanded(
-                              child: Text(
-                        'Izmjeni',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                      ))),
+                          label: Text('Izmjeni',
+                              style: TextStyle(fontStyle: FontStyle.italic))),
                       DataColumn(
-                          label: Expanded(
-                              child: Text(
-                        'Obrisi',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                      )))
+                          label: Text('Obrisi',
+                              style: TextStyle(fontStyle: FontStyle.italic))),
                     ],
                     rows: result?.result
                             .map((e) => DataRow(cells: [
                                   DataCell(Text(e.naziv ?? "")),
-                                  DataCell(
-                                    SizedBox(
-                                      width: double
-                                          .infinity, // Ensures the SingleChildScrollView takes the full width of the cell
-                                      child: SingleChildScrollView(
+                                  DataCell(SizedBox(
+                                    width: double.infinity,
+                                    child: SingleChildScrollView(
                                         scrollDirection: Axis.horizontal,
-                                        child: Text(e.opis ?? ""),
-                                      ),
-                                    ),
-                                  ),
+                                        child: Text(e.opis ?? "")),
+                                  )),
                                   DataCell(Text(
                                       ("${e.minimalnaCijena ?? ""} - ") +
                                           (e.maksimalnaCijena?.toString() ??
@@ -226,12 +186,11 @@ class _PackageListScreenState extends State<PackageListScreen> {
                                   )),
                                   DataCell(ElevatedButton(
                                     child: const Row(
-                                      mainAxisAlignment: MainAxisAlignment
-                                          .spaceBetween, // Aligns the text to the start and the icon to the end
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text('Izmjeni '),
-                                        Icon(Icons
-                                            .edit_outlined), // Your desired icon
+                                        Icon(Icons.edit_outlined)
                                       ],
                                     ),
                                     onPressed: () {
@@ -240,24 +199,51 @@ class _PackageListScreenState extends State<PackageListScreen> {
                                   )),
                                   DataCell(ElevatedButton(
                                     child: const Row(
-                                      mainAxisAlignment: MainAxisAlignment
-                                          .spaceBetween, // Aligns the text to the start and the icon to the end
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text('Obrisi '),
-                                        Icon(Icons
-                                            .edit_outlined), // Your desired icon
+                                        Icon(Icons.delete_outline)
                                       ],
                                     ),
                                     onPressed: () async {
-                                      await _packageProvider.delete(e.id!);
-                                      var data = await _packageProvider.get(
-                                          filter: {
-                                            'naziv': _nazivController.text,
-                                            'opis': _opisController.text
-                                          });
-                                      setState(() {
-                                        result = data;
-                                      });
+                                      bool? confirm = await showDialog<bool>(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title:
+                                                const Text("Potvrda brisanja"),
+                                            content: const Text(
+                                                "Da li ste sigurni da želite obrisati paket?"),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                onPressed: () =>
+                                                    Navigator.of(context)
+                                                        .pop(false),
+                                                child: const Text("Ne"),
+                                              ),
+                                              TextButton(
+                                                onPressed: () =>
+                                                    Navigator.of(context)
+                                                        .pop(true),
+                                                child: const Text("Da"),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+
+                                      if (confirm == true) {
+                                        await _packageProvider.delete(e.id!);
+                                        var data = await _packageProvider.get(
+                                            filter: {
+                                              'naziv': _nazivController.text,
+                                              'opis': _opisController.text
+                                            });
+                                        setState(() {
+                                          result = data;
+                                        });
+                                      }
                                     },
                                   ))
                                 ]))
@@ -269,164 +255,172 @@ class _PackageListScreenState extends State<PackageListScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          content: SingleChildScrollView(
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: <Widget>[
-                Positioned(
-                  right: -40.0,
-                  top: -40.0,
-                  child: InkResponse(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const CircleAvatar(
-                      backgroundColor: Colors.red,
-                      child: Icon(Icons.close),
+        return Dialog(
+          insetPadding: const EdgeInsets.all(20),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: 600,
+              maxHeight: 700,
+            ),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: FormBuilder(
+                key: _formKey,
+                initialValue: _initialValue,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    FormBuilderTextField(
+                      name: 'naziv',
+                      validator: FormBuilderValidators.required(
+                          errorText: "Polje je mandatorno"),
+                      decoration: const InputDecoration(labelText: 'Naziv'),
                     ),
-                  ),
-                ),
-                FormBuilder(
-                  key: _formKey,
-                  initialValue: _initialValue,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      FormBuilderTextField(
-                        name: 'naziv',
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                              errorText: "Polje je mandatorno"),
-                        ]),
-                        decoration: const InputDecoration(
-                          labelText: 'Naziv',
-                        ),
+                    const SizedBox(height: 10),
+                    FormBuilderTextField(
+                      name: 'opis',
+                      validator: FormBuilderValidators.required(
+                          errorText: "Polje je mandatorno"),
+                      decoration: InputDecoration(
+                        labelText: 'Opis',
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0)),
                       ),
-                      const Padding(padding: EdgeInsets.all(10.0)),
-                      FormBuilderTextField(
-                        name: 'opis',
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                              errorText: "Polje je mandatorno"),
-                        ]),
-                        decoration: InputDecoration(
-                          labelText: 'Opis',
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 25.0,
-                            horizontal: 12.0,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                        style: const TextStyle(
-                          fontSize: 22.0,
-                        ),
-                        minLines: 3,
-                        maxLines: null,
-                        keyboardType: TextInputType.multiline,
-                      ),
-                      const Padding(padding: EdgeInsets.all(10.0)),
-                      FormBuilderSlider(
-                        name: 'minimalnaCijena',
-                        initialValue: 250.00,
-                        min: 50.00,
-                        max: 450.00,
-                        divisions: 10,
-                        decoration: const InputDecoration(
-                          labelText: 'Minimalna cijena',
-                        ),
-                      ),
-                      const Padding(padding: EdgeInsets.all(10.0)),
-                      FormBuilderSlider(
-                        name: 'maksimalnaCijena',
-                        initialValue: 750.00,
-                        min: 500.00,
-                        max: 1000.00,
-                        divisions: 10,
-                        decoration: const InputDecoration(
-                          labelText: 'Maksimalna cijena',
-                        ),
-                      ),
-                      const Padding(padding: EdgeInsets.all(10.0)),
-                      FormBuilderDropdown(
-                        name: 'intervalObavjesti',
-                        validator: FormBuilderValidators.compose([
-                          FormBuilderValidators.required(
-                              errorText: "Polje je mandatorno"),
-                        ]),
-                        decoration: const InputDecoration(
-                          labelText: 'Interval',
-                        ),
-                        items: ['12', '24', '36', 'Nema']
-                            .map((interval) => DropdownMenuItem(
-                                  value: interval,
-                                  child: Text(interval),
-                                ))
-                            .toList(),
-                      ),
-                      FormBuilderField(
-                          builder: (((field) {
-                            return InputDecorator(
+                      minLines: 3,
+                      maxLines: null,
+                      keyboardType: TextInputType.multiline,
+                    ),
+                    const SizedBox(height: 10),
+                    FormBuilderSlider(
+                      name: 'minimalnaCijena',
+                      initialValue: 250.00,
+                      min: 50.00,
+                      max: 450.00,
+                      divisions: 10,
+                      decoration:
+                          const InputDecoration(labelText: 'Minimalna cijena'),
+                    ),
+                    const SizedBox(height: 10),
+                    FormBuilderSlider(
+                      name: 'maksimalnaCijena',
+                      initialValue: 750.00,
+                      min: 500.00,
+                      max: 1000.00,
+                      divisions: 10,
+                      decoration:
+                          const InputDecoration(labelText: 'Maksimalna cijena'),
+                    ),
+                    const SizedBox(height: 10),
+                    FormBuilderDropdown(
+                      name: 'intervalObavjesti',
+                      validator: FormBuilderValidators.required(
+                          errorText: "Polje je mandatorno"),
+                      decoration: const InputDecoration(labelText: 'Interval'),
+                      items: ['12', '24', '36', 'Nema']
+                          .map((interval) => DropdownMenuItem(
+                              value: interval, child: Text(interval)))
+                          .toList(),
+                    ),
+                    const SizedBox(height: 10),
+                    FormBuilderField(
+                      name: 'slika',
+                      builder: (field) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            InputDecorator(
                               decoration: InputDecoration(
-                                  label: const Text('Slika'),
-                                  errorText: field.errorText),
+                                label: const Text('Slika'),
+                                errorText: field.errorText,
+                              ),
                               child: ListTile(
                                 leading: const Icon(Icons.photo),
                                 title: const Text("Odaberite sliku"),
-                                trailing: Icon(Icons.file_upload),
-                                onTap: getImage,
+                                trailing: const Icon(Icons.file_upload),
+                                onTap: () async {
+                                  var result = await FilePicker.platform
+                                      .pickFiles(type: FileType.image);
+                                  if (result != null &&
+                                      result.files.single.path != null) {
+                                    _image = File(result.files.single.path!);
+                                    _base64Image =
+                                        base64Encode(_image!.readAsBytesSync());
+
+                                    field.didChange(_base64Image);
+
+                                    setState(() {});
+                                  }
+                                },
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            if (_base64Image != null)
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: SizedBox(
+                                  height: 200,
+                                  width: 400,
+                                  child: Image.memory(
+                                    base64Decode(_base64Image!),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              )
+                            else
+                              const Text("Nema slike"),
+                          ],
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () async {
+                        if (_formKey.currentState?.validate() ?? false) {
+                          _formKey.currentState?.saveAndValidate();
+                          var request = Map.from(_formKey.currentState!.value);
+
+                          request['slika'] = _base64Image;
+                          try {
+                            if (package == null) {
+                              await _packageProvider.insert(request);
+                            } else {
+                              await _packageProvider.update(
+                                  package!.id!, request);
+                            }
+
+                            var data = await _packageProvider.get(filter: {
+                              'naziv': _nazivController.text,
+                              'opis': _opisController.text
+                            });
+                            setState(() {
+                              result = data;
+                            });
+                            package = null;
+                            Navigator.pop(context);
+                          } on Exception catch (e) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text("Error"),
+                                content: Text(e.toString()),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: const Text("OK"),
+                                  )
+                                ],
                               ),
                             );
-                          })),
-                          name: 'slika'),
-                      const Padding(padding: EdgeInsets.all(10.0)),
-                      ElevatedButton(
-                        onPressed: () async {
-                          if (_formKey.currentState?.validate() ?? false) {
-                            _formKey.currentState?.saveAndValidate();
-
-                            var request =
-                                new Map.from(_formKey.currentState!.value);
-
-                            request['slika'] = _base64Image;
-                            try {
-                              if (package == null) {
-                                await _packageProvider.insert(request);
-                              } else {
-                                await _packageProvider.update(
-                                    package!.id!, request);
-                              }
-                              package = null;
-                              Navigator.pop(context);
-                            } on Exception catch (e) {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) => AlertDialog(
-                                  title: const Text("Error"),
-                                  content: Text(e.toString()),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      child: const Text("OK"),
-                                    )
-                                  ],
-                                ),
-                              );
-                            }
                           }
-                        },
-                        child: Text(
-                          package == null
-                              ? "Dodaj novi paket"
-                              : "Izmjeni paket",
-                        ),
-                      ),
-                    ],
-                  ),
+                        }
+                      },
+                      child: Text(package == null
+                          ? "Dodaj novi paket"
+                          : "Izmjeni paket"),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         );
@@ -434,15 +428,12 @@ class _PackageListScreenState extends State<PackageListScreen> {
     );
   }
 
-  File? _image;
-  String? _base64Image;
-
   Future getImage() async {
     var result = await FilePicker.platform.pickFiles(type: FileType.image);
-
     if (result != null && result.files.single.path != null) {
       _image = File(result.files.single.path!);
       _base64Image = base64Encode(_image!.readAsBytesSync());
+      setState(() {});
     }
   }
 
@@ -463,6 +454,11 @@ class _PackageListScreenState extends State<PackageListScreen> {
           else
             'intervalObavjesti': ''
         };
+        if (package != null && package.slika != null) {
+          _base64Image = package.slika;
+        } else {
+          _base64Image = null;
+        }
         _openPopup(context, package);
       });
 }

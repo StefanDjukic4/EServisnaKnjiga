@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'packages.g.dart';
@@ -11,9 +13,17 @@ class Packages {
   double? maksimalnaCijena;
   String? intervalObavjesti;
   String? slika;
+  bool? isDeleted;
 
-  Packages(this.id, this.naziv, this.opis, this.minimalnaCijena,
-      this.maksimalnaCijena, this.intervalObavjesti, this.slika);
+  Packages(
+      this.id,
+      this.naziv,
+      this.opis,
+      this.minimalnaCijena,
+      this.maksimalnaCijena,
+      this.intervalObavjesti,
+      this.slika,
+      this.isDeleted);
 
   factory Packages.fromJson(Map<String, dynamic> json) =>
       _$PackagesFromJson(json);

@@ -33,7 +33,27 @@ namespace eServisnaKnjiga.Services
                 query = query.Where(x => x.Opis.StartsWith(search.Opis));
             }
 
+            query = query.Where(x => x.IsDeleted == false);
+
             return base.AddFilter(query, search);
+        }
+
+        public override async Task<Model.Paketi> Delete(int id)
+        {
+            var set = _context.Set<Database.Paketi>();
+
+            var entity = await set.FindAsync(id);
+
+            if (entity == null)
+            {
+                return null;
+            }
+
+            entity.IsDeleted = true;
+
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<Model.Paketi>(entity);
         }
 
 
@@ -42,6 +62,7 @@ namespace eServisnaKnjiga.Services
             PageResult<Model.Paketi> result = new PageResult<Model.Paketi>();
 
             var products = await _context.Paketis
+                .Where(p => !p.IsDeleted)
                 .ToListAsync();
 
             result.Count = products.Count;

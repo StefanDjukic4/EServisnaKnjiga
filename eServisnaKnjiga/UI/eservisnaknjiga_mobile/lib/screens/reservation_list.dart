@@ -99,30 +99,46 @@ class _ReservationListScreenState extends State<ReservationListScreen> {
     }
   }
 
-  void _submitForm() {
+  Future<void> _submitForm() async {
     if (selectedCarId != null &&
         selectedServices.isNotEmpty &&
         selectedDateTime != null) {
-      Rezervation rezervation = Rezervation(selectedCarId, selectedDateTime,
-          opis, selectedPackagesId, null, null, null);
-      _rezervationProvider.insert(rezervation);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Rezervacija uspješno kreirana!")),
-      );
+      try {
+        Rezervation rezervation = Rezervation(
+          selectedCarId,
+          selectedDateTime,
+          opis,
+          selectedPackagesId,
+          null,
+          null,
+          null,
+        );
 
-      Future.delayed(const Duration(seconds: 2), () {
-        setState(() {
-          selectedCarId = null;
-          selectedServices.clear();
-          selectedPackagesId.clear();
-          selectedDateTime = null;
-          opis = null;
+        await _rezervationProvider.insert(rezervation);
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Rezervacija uspješno kreirana!")),
+        );
+
+        Future.delayed(const Duration(seconds: 2), () {
+          setState(() {
+            selectedCarId = null;
+            selectedServices.clear();
+            selectedPackagesId.clear();
+            selectedDateTime = null;
+            opis = null;
+          });
+
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const ReservationListScreen(),
+          ));
         });
-
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const ReservationListScreen(),
-        ));
-      });
+      } catch (e) {
+        // Ako backend vrati grešku (npr. zauzet termin)
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Greška: $e")),
+        );
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Molimo popunite sva polja.")),

@@ -14,6 +14,7 @@ Packages _$PackagesFromJson(Map<String, dynamic> json) => Packages(
       (json['maksimalnaCijena'] as num?)?.toDouble(),
       json['intervalObavjesti'] as String?,
       json['slika'] as String?,
+      json['isDeleted'] as bool?,
     );
 
 Map<String, dynamic> _$PackagesToJson(Packages instance) => <String, dynamic>{
@@ -24,4 +25,5 @@ Map<String, dynamic> _$PackagesToJson(Packages instance) => <String, dynamic>{
       'maksimalnaCijena': instance.maksimalnaCijena,
       'intervalObavjesti': instance.intervalObavjesti,
       'slika': instance.slika,
+      'isDeleted': instance.isDeleted,
     };

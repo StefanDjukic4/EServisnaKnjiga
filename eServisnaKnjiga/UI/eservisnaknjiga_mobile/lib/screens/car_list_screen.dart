@@ -1,6 +1,7 @@
 import 'package:eservisnaknjiga_mobile/models/car.dart';
 import 'package:eservisnaknjiga_mobile/models/search_result.dart';
 import 'package:eservisnaknjiga_mobile/providers/car_provider.dart';
+import 'package:eservisnaknjiga_mobile/screens/car_service_list_screen.dart';
 import 'package:eservisnaknjiga_mobile/widgets/master_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -81,53 +82,44 @@ class _CarListScreenState extends State<CarListScreen> {
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  'Model: ${carsItem.model ?? "Model nije dostupan"}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.black54,
-                  ),
-                  maxLines: 5,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                Text('Model: ${carsItem.model ?? "Model nije dostupan"}'),
                 const SizedBox(height: 8),
                 Text(
-                  'Godiste: ${carsItem.godinaProizvodnje ?? "Godiste nije dostupno"}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.black54,
-                  ),
-                  maxLines: 5,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                    'Godište: ${carsItem.godinaProizvodnje ?? "Nije dostupno"}'),
                 const SizedBox(height: 8),
                 Text(
-                  'Registarska oznaka: ${carsItem.registracija ?? "Registracija nije dostupna"}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.black54,
-                  ),
-                  maxLines: 5,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                    'Registracija: ${carsItem.registracija ?? "Nije dostupna"}'),
                 const SizedBox(height: 8),
-                Text(
-                  'Broj sasije: ${carsItem.brojSasije ?? "Sasija nije dostupna"}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.black54,
+                Text('Broj šasije: ${carsItem.brojSasije ?? "Nije dostupna"}'),
+                const SizedBox(height: 16),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              CarServiceListScreen(carId: carsItem.id!),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    child: const Text("Pregled servisa"),
                   ),
-                  maxLines: 5,
-                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
           ),
         );
+        ;
       },
     );
   }

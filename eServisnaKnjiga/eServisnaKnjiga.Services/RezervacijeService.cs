@@ -126,13 +126,29 @@ namespace eServisnaKnjiga.Services
 
         }
 
-        public Task<Model.Rezervacije> ClientRezervation(RezervacijeInsertRequest reqest)
+        public async Task<Model.Rezervacije> ClientRezervation(RezervacijeInsertRequest request)
         {
+            if (!request.Datum.HasValue)
+                throw new Exception("Datum nije validan.");
+
+            var newStart = request.Datum.Value;
+            var newEnd = newStart.AddHours(2);
+
+            bool exists = await _context.Rezervacijes.AnyAsync(r =>
+                r.Datum.HasValue &&
+                newStart < r.Datum.Value.AddHours(2) &&
+                newEnd > r.Datum.Value
+            );
+
+            if (exists)
+            {
+                throw new Exception("Vec postoji rezervacija u tom terminu.");
+            }
 
             var state = _baseState.CreateState("initial");
-
-            return state.Insert(reqest);
+            return await state.Insert(request);
         }
+
 
         public async Task<String> ClientInitialzPayment(RadniNalogKlijentPlacanjeRequest request)
         {

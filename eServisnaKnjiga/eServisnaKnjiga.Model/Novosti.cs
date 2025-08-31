@@ -17,5 +17,7 @@ namespace eServisnaKnjiga.Model
 
         public DateTime? DatumObjave { get; set; }
 
+        public string? Slika { get; set; }
+
     }
 }

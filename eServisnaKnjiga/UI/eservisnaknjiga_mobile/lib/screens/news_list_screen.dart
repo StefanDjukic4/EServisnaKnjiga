@@ -1,6 +1,7 @@
 import 'package:eservisnaknjiga_mobile/models/news.dart';
 import 'package:eservisnaknjiga_mobile/models/search_result.dart';
 import 'package:eservisnaknjiga_mobile/providers/news_provider.dart';
+import 'package:eservisnaknjiga_mobile/utils/util.dart';
 import 'package:eservisnaknjiga_mobile/widgets/master_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -59,9 +60,7 @@ class _NewsListScreenState extends State<NewsListScreen> {
 
   Widget _buildNewsListView() {
     var sortedNewsList = result?.result ?? [];
-    sortedNewsList.sort((a, b) {
-      return b.id!.compareTo(a.id!);
-    });
+    sortedNewsList.sort((a, b) => b.id!.compareTo(a.id!));
 
     return ListView.builder(
       itemCount: sortedNewsList.length,
@@ -98,6 +97,34 @@ class _NewsListScreenState extends State<NewsListScreen> {
                   maxLines: 5,
                   overflow: TextOverflow.ellipsis,
                 ),
+                const SizedBox(height: 8),
+                // Datum objave
+                if (newsItem.datumObjave != null)
+                  Text(
+                    "Objavljeno: ${newsItem.datumObjave!.day}.${newsItem.datumObjave!.month}.${newsItem.datumObjave!.year}",
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.black45,
+                    ),
+                  ),
+                const SizedBox(height: 8),
+                if (newsItem.slika != null && newsItem.slika!.isNotEmpty)
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: imageFromBase64String(newsItem.slika!),
+                  )
+                else
+                  Container(
+                    width: double.infinity,
+                    height: 150,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.grey[300],
+                    ),
+                    child: const Text("Slika nije dostupna"),
+                  ),
               ],
             ),
           ),

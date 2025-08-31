@@ -13,6 +13,8 @@ namespace eServisnaKnjiga.Services
     {
         Task<PageResult<Model.RadinNalog>> ClientPayment(int id);
 
+        Task<PageResult<Model.RadinNalog>> ClientCarServiceList(int id);
+
         Task<String> PostClientPayment(RadniNalogKlijentPlacanjeRequest request);
     }
 }
