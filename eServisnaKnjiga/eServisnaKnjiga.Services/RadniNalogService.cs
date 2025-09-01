@@ -4,6 +4,7 @@ using eServisnaKnjiga.Model.Requests;
 using eServisnaKnjiga.Model.SearchObjects;
 using eServisnaKnjiga.Services.Database;
 using eServisnaKnjiga.Services.RezervacijeStateMachine;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
 using Stripe.Climate;
@@ -17,7 +18,16 @@ namespace eServisnaKnjiga.Services
 {
     public class RadniNalogService : BaseCRUDService<Model.RadinNalog, Database.RadniNalog, RadniNalogSerchaObject, RadniNalogInsertRequest, RadniNalogUpdateRequest>  , IRadniNalogService
     {
-        public RadniNalogService(EServisnaKnjigaContext context, IMapper mapper) : base(context, mapper){}
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public RadniNalogService(
+            EServisnaKnjigaContext context,
+            IMapper mapper,
+            IHttpContextAccessor httpContextAccessor)
+            : base(context, mapper)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
 
         public override IQueryable<Database.RadniNalog> AddInclude(IQueryable<Database.RadniNalog> query, RadniNalogSerchaObject? search = null)
         {
@@ -156,13 +166,15 @@ namespace eServisnaKnjiga.Services
         {
             PageResult<Model.RadinNalog> result = new PageResult<Model.RadinNalog>();
 
+            var klijentId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst("KlijentId")!.Value);
+
             var products = await _context.RadniNalogs
                 .Include("Majstor")
                 .Include("Rezervacija.Automobil.Klijent")
                 .Include("Rezervacija.RezervacijaPaketi.Paket")
                 .Where(x => x.Rezervacija != null &&
                             x.Rezervacija.Automobil != null &&
-                            x.Rezervacija.Automobil.KlijentId == id &&
+                            x.Rezervacija.Automobil.KlijentId == klijentId &&
                             x.Rezervacija.Status == "pending_payment")
                 .ToListAsync();
 

@@ -44,7 +44,8 @@ namespace eServisnaKnjiga
                 {
                     new Claim(ClaimTypes.Name, user.Ime ),
                     new Claim(ClaimTypes.NameIdentifier, user.Email ),
-                    new Claim(ClaimTypes.Role, user.Korisnicis.FirstOrDefault().Role.Naziv)
+                    new Claim(ClaimTypes.Role, user.Korisnicis.FirstOrDefault().Role.Naziv),
+                    new Claim("KlijentId", user.Id.ToString())
                 };
 
                 var identity = new ClaimsIdentity(claims, Scheme.Name);

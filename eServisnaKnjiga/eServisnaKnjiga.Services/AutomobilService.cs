@@ -1,21 +1,27 @@
 ﻿using AutoMapper;
-using eServisnaKnjiga.Model;
 using eServisnaKnjiga.Model.Requests;
 using eServisnaKnjiga.Model.SearchObjects;
+using eServisnaKnjiga.Model;
 using eServisnaKnjiga.Services.Database;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace eServisnaKnjiga.Services
 {
     public class AutomobilService : BaseCRUDService<Model.Automobil, Database.Automobil, AutomobilSerchaObject, AutomobiliInsertRequest, AutomobiliUpdateRequest>, IAutomobilService
     {
-        public AutomobilService(EServisnaKnjigaContext context, IMapper mapper) : base(context, mapper) { }
-        
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public AutomobilService(
+            EServisnaKnjigaContext context,
+            IMapper mapper,
+            IHttpContextAccessor httpContextAccessor)
+            : base(context, mapper)
+                {
+                    _httpContextAccessor = httpContextAccessor;
+                }
+
         public override IQueryable<Database.Automobil> AddFilter(IQueryable<Database.Automobil> query, AutomobilSerchaObject? search = null)
         {
             if (!string.IsNullOrWhiteSpace(search?.Marka))
@@ -56,12 +62,13 @@ namespace eServisnaKnjiga.Services
         {
             PageResult<Model.Automobil> result = new PageResult<Model.Automobil>();
 
+            var klijentId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst("KlijentId")!.Value);
+
             var products = await _context.Automobils
-                .Where(x => x.KlijentId == id)
+                .Where(x => x.KlijentId == klijentId)
                 .ToListAsync();
 
             result.Count = products.Count;
-
             result.Result = _mapper.Map<List<Model.Automobil>>(products);
 
             return result;

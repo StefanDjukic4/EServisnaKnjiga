@@ -4,6 +4,7 @@ using eServisnaKnjiga.Model.Requests;
 using eServisnaKnjiga.Model.SearchObjects;
 using eServisnaKnjiga.Services.Database;
 using eServisnaKnjiga.Services.RezervacijeStateMachine;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
 using System;
@@ -20,9 +21,17 @@ namespace eServisnaKnjiga.Services
     {
         public BaseState _baseState { get; set; }
 
-        public RezervacijeService(BaseState baseState, EServisnaKnjigaContext context, IMapper mapper) : base(context, mapper)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public RezervacijeService(
+            BaseState baseState,
+            EServisnaKnjigaContext context,
+            IMapper mapper,
+            IHttpContextAccessor httpContextAccessor)
+            : base(context, mapper)
         {
             _baseState = baseState;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public override IQueryable<Database.Rezervacije> AddInclude(IQueryable<Database.Rezervacije> query, BaseSearchObject? search = null)
@@ -52,12 +61,13 @@ namespace eServisnaKnjiga.Services
 
         public async Task<List<Model.Rezervacije>> GetByClientId(int id)
         {
+            var klijentId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst("KlijentId")!.Value);
             var entity = await _context.Rezervacijes
                 .Include(r => r.Automobil)
                     .ThenInclude(rp => rp.Klijent)
                 .Include(r => r.RezervacijaPaketi)
                     .ThenInclude(rp => rp.Paket)
-                .Where(r => r.Automobil.KlijentId == id)
+                .Where(r => r.Automobil.KlijentId == klijentId)
                 .ToListAsync();
 
             return _mapper.Map<List<Model.Rezervacije>>(entity);

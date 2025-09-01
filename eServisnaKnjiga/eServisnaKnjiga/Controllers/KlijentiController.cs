@@ -5,6 +5,8 @@ using eServisnaKnjiga.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace eServisnaKnjiga.Controllers
 {
