@@ -363,7 +363,7 @@ public partial class EServisnaKnjigaContext : DbContext
             new Automobil { Id = 7, Marka = "Hyundai", Model = "i30", GodinaProizvodnje = 2014, BrojSasije = "KMHH35LE9FU123407", Registracija = "ST404MN", KlijentId = 1 },
             new Automobil { Id = 8, Marka = "Kia", Model = "Ceed", GodinaProizvodnje = 2013, BrojSasije = "KNAGM4A71D5123418", Registracija = "RI505OP", KlijentId = 8 },
             new Automobil { Id = 9, Marka = "Opel", Model = "Astra", GodinaProizvodnje = 2012, BrojSasije = "W0L0TGF69D6123499", Registracija = "DU606QR", KlijentId = 1 },
-            new Automobil { Id = 10, Marka = "Renault", Model = "Clio", GodinaProizvodnje = 2011, BrojSasije = "VF1BB0H0D12345100", Registracija = "MA707ST", KlijentId = 10 }
+            new Automobil { Id = 10, Marka = "Renault", Model = "Clio", GodinaProizvodnje = 2011, BrojSasije = "VF1BB0H0D12345100", Registracija = "MA707ST", KlijentId = 1 }
         );
 
         // Majstoris
@@ -447,7 +447,7 @@ public partial class EServisnaKnjigaContext : DbContext
             new Rezervacije { Id = 7, AutomobilId = 7, Datum = DateTime.Today.AddDays(-1).AddHours(13), Opis = "Popravka elektronike", Status = "paid_cash" },
             new Rezervacije { Id = 8, AutomobilId = 8, Datum = DateTime.Today.AddDays(-2).AddHours(13), Opis = "Punjenje klime", Status = "paid_cash" },
             new Rezervacije { Id = 9, AutomobilId = 9, Datum = DateTime.Today.AddDays(-3).AddHours(13), Opis = "Dijagnostika motora", Status = "pending_payment" },
-            new Rezervacije { Id = 10, AutomobilId = 10, Datum = DateTime.Today.AddDays(-2).AddHours(10), Opis = "Popravka svjetala", Status = "paid_mpay" }
+            new Rezervacije { Id = 10, AutomobilId = 10, Datum = DateTime.Today.AddDays(-2).AddHours(10), Opis = "Popravka svjetala", Status = "modify" }
         );
 
         // RezervacijaPaketi
